@@ -59,3 +59,22 @@ Node* findNode(Node* current, int phoneFrom)
 	}
 	return nullptr;
 }
+
+Node* getLastNode(Node* current)
+{
+	if (current)
+	{
+		if (current->next)
+		{
+			return getLastNode(current->next);
+		}
+		return current;
+	}
+	return nullptr;
+}
+
+void addNode(Node* lastNode, Node* nodeNew)
+{
+	nodeNew = createList(nodeNew, 1);
+	lastNode->next = nodeNew;
+}

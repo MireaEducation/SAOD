@@ -21,6 +21,7 @@ int main()
 		cout << "1) Создать новый список из n узлов\n";
 		cout << "2) Вывести список\n";
 		cout << "3) Найти первый узел с указанным номером отправителя\n";
+		cout << "4) Добавит новый узел в список\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer2)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -84,7 +85,20 @@ int main()
 				}
 			}
 			else {
-				cout << "Список пуст";
+				cout << "Список пуст\n\n";
+			}
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			if (list)
+			{
+				addNode(getLastNode(list), nullptr);
+				cout << "\n\nНовый узел добавлен";
+			}
+			else {
+				cout << "Список пуст\n\n";
 			}
 			system("pause");
 			break;
@@ -97,5 +111,9 @@ int main()
 		}
 	}
 
+	if (list)
+	{
+		free(list);
+	}
 	return 0;
 }
