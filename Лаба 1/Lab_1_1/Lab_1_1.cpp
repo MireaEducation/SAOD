@@ -20,6 +20,7 @@ int main()
 		cout << "\nМеню\n";
 		cout << "1) Создать новый список из n узлов\n";
 		cout << "2) Вывести список\n";
+		cout << "3) Найти первый узел с указанным номером отправителя\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer2)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -53,10 +54,43 @@ int main()
 			system("pause");
 			break;
 		}
+		case 2: 
+		{
+			if (list)
+			{
+				cout << "Вывод списка\n\n";
+				showList(list);
+			}
+			else {
+				cout << "Список пуст";
+			}
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			if (list)
+			{
+				int phoneFrom = 0;
+				cout << "Введите номер телефона отправителя: "; cin >> phoneFrom;
+				Telephone* finded = findNode(list, phoneFrom);
+				if (finded)
+				{
+					cout << "\n\n";
+					cout << "Номер отправителя: " << finded->phoneFrom << "\tНомер получателя: " << finded->phoneTo << "\tВремя разговора: " << finded->timeTell << endl;
+				}
+				else {
+					cout << "Узле с указанным телефоном отправителя - не найден"<<endl;
+				}
+			}
+			else {
+				cout << "Список пуст";
+			}
+			system("pause");
+			break;
+		}
 		default:
 		{
-			cout << "Вывод списка\n\n";
-			showList(list);
 			system("pause");
 		}
 		break;
