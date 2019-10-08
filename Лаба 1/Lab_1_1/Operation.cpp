@@ -12,9 +12,11 @@ Node* createList(Node* head, int n)
 
 	head = (Node*)malloc(sizeof(Node));
 
+	cout << "ќсталость добавить: " << n << endl;
 	cout << "¬ведите номер получател€: "; cin >> head->phoneFrom;
 	cout << "¬ведите номер отправител€: "; cin >> head->phoneTo;
 	cout << "¬ведите врем€ разговора: "; cin >> head->timeTell;
+	cout << "\n\n";
 
 	head->next = createList(head->next, n - 1);
 

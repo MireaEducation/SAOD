@@ -45,14 +45,17 @@ int main()
 			int n = 0;
 			cout << "Список из скольких элементов вы хотите создать? : ";
 			cin >> n;
+			cout << "\n\n";
 			list = (Telephone*)malloc(sizeof(Telephone));
 			list = createList(list, n);
+
+			cout << "\n\nСписок сформирован";
 			system("pause");
 			break;
 		}
 		default:
 		{
-			cout << "Вывод списка\n";
+			cout << "Вывод списка\n\n";
 			showList(list);
 			system("pause");
 		}
