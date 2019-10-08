@@ -152,8 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lab_1_1.cpp" />
+    <ClCompile Include="Operation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Operation.h" />
     <ClInclude Include="Telephone.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

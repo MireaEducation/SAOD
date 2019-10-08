@@ -3,10 +3,10 @@
 #include <malloc.h>
 
 //Создает список из n узлов
-Telephone* createList(Telephone* head, int n);
+Node* createList(Node* head, int n);
 
 //Выводит на экран список list из n узлов
-void showList(Telephone* list);
+void showList(Node* list);
 
 //Находит узел с заданынм номером отправтеля
-Telephone* findNode(Telephone* current, int phoneFrom);
+Node* findNode(Node* current, int phoneFrom);

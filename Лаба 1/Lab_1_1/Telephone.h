@@ -1,5 +1,5 @@
 #pragma once
-typedef struct Telephone
+typedef struct Node
 {
 	//Номер отправителя
 	int phoneFrom;
@@ -11,5 +11,5 @@ typedef struct Telephone
 	int timeTell;
 
 	//Ссылка на следующий элемент списка
-	struct Telephone* next;
-} lstTelephone;
+	struct Node* next;
+} Telephone;

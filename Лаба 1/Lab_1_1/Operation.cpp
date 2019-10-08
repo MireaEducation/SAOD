@@ -3,32 +3,34 @@
 
 using namespace std;
 
-Telephone* createList(Telephone* head, int n)
+Node* createList(Node* head, int n)
 {
 	if (n == 0)
 	{
-		return head;
+		return nullptr;
 	}
 
-	head = (Telephone*)malloc(sizeof(Telephone));
+	head = (Node*)malloc(sizeof(Node));
 
 	cout << "Введите номер получателя: "; cin >> head->phoneFrom;
 	cout << "Введите номер отправителя: "; cin >> head->phoneTo;
 	cout << "Введите время разговора: "; cin >> head->timeTell;
 
-	createList(head->next, n-1);
+	head->next = createList(head->next, n - 1);
+
+	return head;
 }
 
-void showList(Telephone* list)
+void showList(Node* list)
 {
 	if (list)
 	{
-		cout << "Номер отправителя: " << list->phoneFrom << "\tНомер получателя: " << node->list << "\tВремя разговора: " << node->list << endl;
+		cout << "Номер отправителя: " << list->phoneFrom << "\tНомер получателя: " << list->phoneTo << "\tВремя разговора: " << list->timeTell << endl;
 		showList(list->next);
 	}
 }
 
-Telephone* findNode(Telephone* current, int phoneFrom)
+Node* findNode(Node* current, int phoneFrom)
 {
 	if (current)
 	{
