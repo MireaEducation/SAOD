@@ -14,6 +14,21 @@ Node* createList(Node* head, int n)
 
 	cout << "Осталость добавить: " << n << endl;
 	cout << "Введите номер получателя: "; cin >> head->phoneFrom;
+	
+	{
+		int res = head->phoneFrom;
+		int minValue = res / 1000000;
+		int maxValue = res / 10000000;
+		while ( !(minValue > 0 && maxValue == 0) )
+		{
+			cout << "Номер телефона долежн состоять из 7 цифр !\nПовторите ввод: ";
+			cin >> res;
+			minValue = res / 1000000;
+			maxValue = res / 10000000;
+		}
+		head->phoneFrom = res;
+	}
+
 	cout << "Введите номер отправителя: "; cin >> head->phoneTo;
 	cout << "Введите время разговора: "; cin >> head->timeTell;
 	cout << "\n\n";
