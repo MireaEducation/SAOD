@@ -145,3 +145,14 @@ void deletChoosenNode(Node* head)
 		}
 	}
 }
+
+int sumTimeTell(Node* head, int phoneFrom)
+{
+	int sum = 0;
+	for (Node* i = head; i; i = i->next)
+	{
+		if (i->phoneFrom == phoneFrom)
+			sum += i->timeTell;
+	}
+	return sum;
+}

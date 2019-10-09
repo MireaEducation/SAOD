@@ -31,3 +31,6 @@ Node* getLastNodeForDelete(Node* head, int phoneFrom);
 
 //Удаляет выбранный узел
 void deletChoosenNode(Node* head);
+
+//Возвращает суммарную длиельность разговора по указанному номеру отправителя
+int sumTimeTell(Node* head, int phoneFrom);
