@@ -25,3 +25,9 @@ void swapDataNode(Node* node1, Node* node2);
 
 //Сортирует список по первым четырем цифрам телефона
 void sortList(Node* head);
+
+//Возвращает ссылку на последний узел, содержащий соответствующий номер отправителя
+Node* getLastNodeForDelete(Node* head, int phoneFrom);
+
+//Удаляет выбранный узел
+void deletChoosenNode(Node* head);

@@ -28,7 +28,7 @@ Node* createList(Node* head, int n)
 		}
 		head->phoneFrom = res;
 	}
-
+	
 	cout << "Введите номер отправителя: "; cin >> head->phoneTo;
 	cout << "Введите время разговора: "; cin >> head->timeTell;
 	cout << "\n\n";
@@ -113,6 +113,35 @@ void sortList(Node* head)
 			{
 				swapDataNode(first, first->next);
 			}
+		}
+	}
+}
+
+Node* getLastNodeForDelete(Node* head, int phoneFrom)
+{
+	Node* last = nullptr;
+	for (Node* i = head; i->next; i = i->next)
+	{
+		if (i->phoneFrom = phoneFrom)
+		{
+			last = i;
+		}
+	}
+	return last;
+}
+
+void deletChoosenNode(Node* head)
+{
+	int phoneFrom;
+	cout << "Введите номер телефона отправителя: "; cin >> phoneFrom;
+	Node* last = getLastNodeForDelete(head, phoneFrom);
+	for (Node* i = head; i->next; i = i->next)
+	{
+		if (i == last)
+		{
+			i->next = i->next->next;
+			free(i->next);
+			return;
 		}
 	}
 }
