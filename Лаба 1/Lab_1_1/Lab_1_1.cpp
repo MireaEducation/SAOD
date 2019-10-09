@@ -22,6 +22,7 @@ int main()
 		cout << "2) Вывести список\n";
 		cout << "3) Найти первый узел с указанным номером отправителя\n";
 		cout << "4) Добавит новый узел в список\n";
+		cout << "5) Упорядочить список по 1-ым четырем цифрам телефона\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer2)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -96,6 +97,19 @@ int main()
 			{
 				addNode(getLastNode(list), nullptr);
 				cout << "\n\nНовый узел добавлен";
+			}
+			else {
+				cout << "Список пуст\n\n";
+			}
+			system("pause");
+			break;
+		}
+		case 5:
+		{
+			if (list)
+			{
+				sortList(list);
+				cout << "\n\nСписок упорядочен" << endl;
 			}
 			else {
 				cout << "Список пуст\n\n";

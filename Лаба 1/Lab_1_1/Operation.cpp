@@ -78,3 +78,41 @@ void addNode(Node* lastNode, Node* nodeNew)
 	nodeNew = createList(nodeNew, 1);
 	lastNode->next = nodeNew;
 }
+
+int getNum(int phone)
+{
+	int num1 = (phone / 1000000);
+	int num2 = (phone / 100000) % 10;
+	int num3 = (phone / 10000) % 10;
+	return num1*100+num2*10+num3;
+}
+
+void swapDataNode(Node* node1, Node* node2)
+{
+	int phoneFrom = node1->phoneFrom, 
+		phoneTo = node1->phoneTo,
+		timeTell = node1->timeTell;
+
+	node1->phoneFrom = node2->phoneFrom;
+	node1->phoneTo = node2->phoneTo;
+	node1->timeTell = node2->timeTell;
+
+	node2->phoneFrom = phoneFrom;
+	node2->phoneTo = phoneTo;
+	node2->timeTell = timeTell;
+}
+
+void sortList(Node* head)
+{
+	Node* first = head, * second = 0;
+	for (second = head; second; second = second->next)
+	{ 
+		for (first = head; first->next; first = first->next)
+		{
+			if (getNum(first->phoneFrom) > getNum(first->next->phoneFrom))
+			{
+				swapDataNode(first, first->next);
+			}
+		}
+	}
+}

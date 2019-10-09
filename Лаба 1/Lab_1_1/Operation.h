@@ -16,3 +16,12 @@ Node* getLastNode(Node* current);
 
 //Добавляет в конец списка новый узел
 void addNode(Node* lastNode, Node* nodeNew);
+
+//Возвращает первые 4 цифры телефона
+int getNum(int phone);
+
+//Меняет значения элементов списка
+void swapDataNode(Node* node1, Node* node2);
+
+//Сортирует список по первым четырем цифрам телефона
+void sortList(Node* head);
