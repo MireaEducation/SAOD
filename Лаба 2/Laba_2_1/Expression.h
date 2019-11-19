@@ -1,5 +1,4 @@
 #pragma once
-#include "Operation.h"
 #include <string>
 using namespace std;
 
@@ -32,6 +31,14 @@ public:
 	/// </summary>
 	/// <param name="expression">Выражение, которое нужуно распарсить</param>
 	Expression(string expression);
+
+	/// <summary>
+	/// Возвращает первый знак операции в выражении 
+	/// </summary>
+	/// <param name="exp">Матемическое выражение</param>
+	/// <param name="index">Индекс знака операции в выражении</param>
+	/// <returns></returns>
+	static char getCharOperation(string exp, int& index);
 
 	/// <summary>
 	/// Возвращает результат выражения

@@ -19,6 +19,25 @@ Expression::Expression(string expression)
 	this->lastArg = expression;
 }
 
+char Expression::getCharOperation(string exp, int& index)
+{
+	int length = exp.length();
+	char oper = ' ';
+
+	for (size_t i = 0; i < length; i++)
+	{
+		if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/')
+		{
+			oper = exp[i];
+			index = i;
+			break;
+		}
+	}
+
+	return oper;
+}
+
+
 double Expression::getResult()
 {
 	double arg1 = atof(this->firstArg.c_str());

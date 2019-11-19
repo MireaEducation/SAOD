@@ -2,14 +2,14 @@
 
 Stack::Stack()
 {
-
+	this->mass = new Expression[1];
+	this->size = 0;
 }
 
 void Stack::init(string exp)
 {
 	Expression obj(exp);
-	this->mass = new Expression[1];
-	while(!this->mass) this->mass = new Expression[1];
+	while(!this->mass) this->mass = (Expression*)malloc(sizeof(Expression));
 
 	if (this->mass) {
 		this->size = 1;
@@ -29,13 +29,35 @@ void Stack::init(string exp)
 
 void Stack::push(Expression elem)
 {
-	//this->mass = updateSize(this->mass, this->size, this->size + 1);//(Expression*)realloc(this->mass, sizeof(Expression)*this->size);
+	this->mass = this->updateSize(this->mass, this->size, this->size + 1);
+	//this->mass = (Expression*)realloc(this->mass, sizeof(Expression) * this->size);
 	this->size++;
 
 	if (this->mass) {
-		throw new exception("Не удалось выделить память \n");
-	}
-	else {
 		this->mass[size - 1] = elem;
 	}
+	else {
+		throw new exception("Не удалось выделить память \n");
+	}
+}
+
+Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
+{
+		Expression* updateMass = NULL;
+		updateMass = new Expression[size_new];
+		if (updateMass) {
+			size_t i = 0;
+
+			for (i = 0; i < size_old; i++)
+			{
+				updateMass[i] = exp[i];
+			}
+
+			for (; i < size_new; i++)
+			{
+				updateMass[i] = Expression();
+			}
+		}
+
+		return updateMass;
 }
