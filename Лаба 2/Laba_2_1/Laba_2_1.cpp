@@ -10,79 +10,89 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer2 = 10;
-	Stack list;
+	Stack stack;
+	string exp = "";
+	try
+	{
+		while (answer2 != 0) {
+			system("cls");
+			cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
+			cout << "Задание 1\nВычислить значение арифметического бесскобочного выражения, введенного в виде строки.Операнды операций – это \nцелые числа.Перед вычислением значения выражения следует проверить \nего на корректность записи операций и операндов. .\n";
+			cout << "\nМеню\n";
+			cout << "1) Записать новое математическое выражение\n";
+			cout << "2) \n";
+			cout << "0) Выход\n";
+			cout << "\nВаш выбор: ";
+			while ((!(cin >> answer2)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
+				cout << "ERROR\n";
+				cin.clear(); // сбрасывает все биты потока, тоесть поток становится "хорошим"
+				cin.sync();//Удалим данные из буффера
+				cout << "Повторите ввод : ";
+			}
+			system("cls");
+			cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
+			switch (answer2)
+			{
+			case 0: {
+				system("pause");
+				break;
+			}
+			case 1:
+			{
+				cin >> exp;
+				stack.init(exp);
+				cout << "Математическое выражение спешно распарсено в стек" << endl;
+				system("pause");
+				break;
+			}
+			case 2:
+			{
 
-	while (answer2 != 0) {
-		system("cls");
-		cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
-		cout << "Задание 1\nВычислить значение арифметического бесскобочного выражения, введенного в виде строки.Операнды операций – это \nцелые числа.Перед вычислением значения выражения следует проверить \nего на корректность записи операций и операндов. .\n";
-		cout << "\nМеню\n";
-		cout << "1) Создать новый список из n узлов\n";
-		cout << "2) Вывести список\n";
-		cout << "0) Выход\n";
-		cout << "\nВаш выбор: ";
-		while ((!(cin >> answer2)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
-			cout << "ERROR\n";
-			cin.clear(); // сбрасывает все биты потока, тоесть поток становится "хорошим"
-			cin.sync();//Удалим данные из буффера
-			cout << "Повторите ввод : ";
-		}
-		system("cls");
-		cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
-		switch (answer2)
-		{
-		case 0: {
-			system("pause");
-			break;
-		}
-		case 1:
-		{
+				system("pause");
+				break;
+			}
+			case 3:
+			{
 
-			system("pause");
-			break;
-		}
-		case 2:
-		{
+				system("pause");
+				break;
+			}
+			case 4:
+			{
 
-			system("pause");
-			break;
-		}
-		case 3:
-		{
+				system("pause");
+				break;
+			}
+			case 5:
+			{
 
-			system("pause");
-			break;
-		}
-		case 4:
-		{
+				system("pause");
+				break;
+			}
+			case 6:
+			{
 
-			system("pause");
-			break;
-		}
-		case 5:
-		{
+				system("pause");
+				break;
+			}
+			case 7:
+			{
 
-			system("pause");
+				system("pause");
+				break;
+			}
+			default:
+			{
+				system("pause");
+			}
 			break;
+			}
 		}
-		case 6:
-		{
 
-			system("pause");
-			break;
-		}
-		case 7:
-		{
-
-			system("pause");
-			break;
-		}
-		default:
-		{
-			system("pause");
-		}
-		break;
-		}
+	}
+	catch (const std::exception& ex)
+	{
+		cout << "Ошибка: " << ex.what() << endl;
 	}
 
 	return 0;

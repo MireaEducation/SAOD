@@ -1,4 +1,5 @@
 #pragma once
+#include "Operation.h"
 #include <string>
 using namespace std;
 
@@ -20,14 +21,6 @@ private:
 	/// Знак операции
 	/// </summary>
 	char operation;
-
-	/// <summary>
-	/// Возвращает первый знак операции в выражении 
-	/// </summary>
-	/// <param name="exp">Матемическое выражение</param>
-	/// <param name="index">Индекс знака операции в выражении</param>
-	/// <returns></returns>
-	char getCharOperation(string exp, int &index);
 public:
 	/// <summary>
 	/// Создает объект по умолчанию
@@ -45,5 +38,7 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	double getResult();
+
+	string getLastArg();
 };
 

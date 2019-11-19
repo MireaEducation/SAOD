@@ -1,23 +1,5 @@
 #include "Expression.h"
 
-char Expression::getCharOperation(string exp, int& index)
-{
-	int length = exp.length();
-	char oper = ' ';
-
-	for (size_t i = 0; i < length; i++)
-	{
-		if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/')
-		{
-			oper = exp[i];
-			index = i;
-			break;
-		}
-	}
-	
-	return oper;
-}
-
 Expression::Expression()
 {
 	this->firstArg = "";
@@ -29,8 +11,8 @@ Expression::Expression(string expression)
 {
 	int index = -1;
 
-	this->operation = this->getCharOperation(expression, index);
-	this->firstArg.append(expression.c_str(), index + 1);
+	this->operation = getCharOperation(expression, index);
+	this->firstArg.append(expression.c_str(), index);
 
 	expression.erase(0, index + 1);
 
@@ -63,4 +45,9 @@ double Expression::getResult()
 		throw new exception("Ошибка - неверный символ операции");
 		break;
 	}
+}
+
+string Expression::getLastArg()
+{
+	return this->lastArg;
 }

@@ -1,12 +1,21 @@
 #pragma once
 #include "Expression.h"
+#include "stdlib.h"
+
 class Stack
 {
 private:
 	Expression* mass;
 	int size;
+
 public:
-	Stack(string exp);
+	Stack();
+
+	/// <summary>
+	/// Инициализирует стек
+	/// </summary>
+	/// <param name="exp">Математическое выражение</param>
+	void init(string exp);
 
 	/// <summary>
 	/// Добавляет в конец стека новый элемент
