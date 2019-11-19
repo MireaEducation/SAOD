@@ -9,7 +9,7 @@ Stack::Stack()
 void Stack::init(string exp)
 {
 	Expression obj(exp);
-	while(!this->mass) this->mass = (Expression*)malloc(sizeof(Expression));
+	while(!this->mass) this->mass = new Expression[1];
 
 	if (this->mass) {
 		this->size = 1;

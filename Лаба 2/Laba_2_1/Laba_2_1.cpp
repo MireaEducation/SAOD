@@ -39,6 +39,7 @@ int main()
 			{
 				cin >> exp;
 				stack.init(exp);
+				
 				cout << "Математическое выражение спешно распарсено в стек" << endl;
 				system("pause");
 				break;
