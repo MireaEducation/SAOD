@@ -1,6 +1,7 @@
 #pragma once
 #include "Operation.h"
 #include "stdlib.h"
+#include "math.h"
 
 class Stack
 {

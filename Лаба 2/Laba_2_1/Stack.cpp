@@ -121,12 +121,20 @@ double Stack::getResultExpression()
 				preLast->setLastArg(to_string(last->getResult()));
 			}
 			else {
-				changeNodes(*last, *preLast);
+				//changeNodes(*last, *preLast);
 				last->setOperation('-');
 
 				//Меняем местами аргументы в связи обнаруженным минусом
 				changeArgs(*last);
-				preLast->setLastArg(to_string(last->getResult()));
+				double res = last->getResult();
+				if (res < 0)
+				{
+					preLast->setOperation('-');
+				}
+				else {
+					preLast->setOperation('+');
+				}
+				preLast->setLastArg(to_string(abs(res)));
 			}
 		}
 		else {
