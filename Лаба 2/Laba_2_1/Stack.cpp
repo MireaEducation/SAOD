@@ -2,12 +2,12 @@
 
 Stack::Stack()
 {
-
+	this->mass = nullptr;
 }
 
 Stack::~Stack()
 {
-	if (mass)
+	if (mass != nullptr && this->size != 0)
 		free(mass);
 }
 
