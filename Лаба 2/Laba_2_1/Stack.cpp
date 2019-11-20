@@ -107,9 +107,14 @@ double Stack::getResultExpression()
 		Expression *preLast = &this->mass[indexLast - 1];
 
 		//≈сли знак операции последнего элемента стека - имеет высокий приоритет
-		if (last->isPriorityOperation() || !preLast->isPriorityOperation())
+		if (last->isPriorityOperation() || (!preLast->isPriorityOperation() && preLast->getOperation() != '-'))
 		{
 			preLast->setLastArg(to_string(last->getResult()));
+		}
+		else if (preLast->getOperation() == '-') {
+			changeNodes(*last, *preLast);
+			last->setOperation('-');
+			preLast->setLastArg(to_string(-last->getResult()));
 		}
 		else {
 			changeNodes(*last, *preLast);
