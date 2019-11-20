@@ -56,12 +56,16 @@ double Expression::getResult()
 		break;
 	case '/':
 		if (arg2 != 0)
-			return arg1 + arg2;
+			return arg1 / arg2;
 		else
-			throw new exception("Ошибка - выражение содержит операцию деления на 0");
+		{
+			cout << "Ошибка - выражение содержит операцию деления на 0";
+			return 0;
+		}
 		break;
 	default:
-		throw new exception("Ошибка - неверный символ операции");
+		cout << "Ошибка - неверный символ операции";
+		return 0;
 		break;
 	}
 }

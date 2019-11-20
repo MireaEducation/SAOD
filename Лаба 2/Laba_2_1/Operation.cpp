@@ -19,8 +19,15 @@ void changeNodes(Expression &last, Expression &preLast)
 	char copyOper = last.getOperation();
 
 	last.setLastArg(preLast.getFirstArg());
-	last.setOperation(copyOper);
+	last.setOperation(preLast.getOperation());
 
 	preLast.setFirstArg(copyArg);
 	preLast.setOperation(copyOper);
+}
+
+void changeArgs(Expression& last)
+{
+	string copy = last.getFirstArg();
+	last.setFirstArg(last.getLastArg());
+	last.setLastArg(copy);
 }

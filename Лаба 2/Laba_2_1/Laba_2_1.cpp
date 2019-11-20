@@ -48,7 +48,8 @@ int main()
 			{
 				if (stack.top().getOperation() != ' ')
 				{
-					cout << exp << " = " << stack.getResultExpression() << endl;
+					double res = stack.getResultExpression();
+					cout << exp << " = " << res << endl;
 					stack.pop();
 				}
 				else {

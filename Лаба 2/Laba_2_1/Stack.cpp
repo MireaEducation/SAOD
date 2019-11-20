@@ -114,11 +114,20 @@ double Stack::getResultExpression()
 		else if (preLast->getOperation() == '-') {
 			changeNodes(*last, *preLast);
 			last->setOperation('-');
-			preLast->setLastArg(to_string(-last->getResult()));
+
+			//Меняем местами аргументы в связи обнаруженным минусом
+			changeArgs(*last);
+
+			preLast->setLastArg(to_string(last->getResult()));
 		}
 		else {
 			changeNodes(*last, *preLast);
+			changeArgs(*last);
+			
 			preLast->setLastArg(to_string(last->getResult()));
+			if (preLast->getOperation() == '-') {
+				changeArgs(*preLast);
+			}
 		}
 		this->pop();
 	}

@@ -17,3 +17,9 @@ bool isExpression(string exp);
 /// <param name="last">Последнее выражение</param>
 /// <param name="preLast">Предпоследнее выражение</param>
 void changeNodes(Expression &last, Expression &preLast);
+
+/// <summary>
+/// Изменяет аргументы в выражении местами
+/// </summary>
+/// <param name="last">Последнее выражение</param>
+void changeArgs(Expression& last);
