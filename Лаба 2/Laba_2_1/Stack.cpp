@@ -16,17 +16,19 @@ void Stack::init(string exp)
 	this->mass = new Expression[1];
 	this->size = 1;
 
-	Expression obj(exp);
+	
 	while(!this->mass) this->mass = new Expression[1];
 
 	if (this->mass) {
+		Expression obj(exp);
 		this->mass[0] = obj;
 		
 		//≈сли второй аргумент €вл€етс€ мат. выражением - добавл€ем в стек
-		if (isExpression(obj.getLastArg()))
+		while (isExpression(obj.getLastArg()))
 		{
 			Expression secondExp(obj.getLastArg());
 			this->push(secondExp);
+			obj = secondExp;
 		}
 	}
 	else {
@@ -112,13 +114,20 @@ double Stack::getResultExpression()
 			preLast->setLastArg(to_string(last->getResult()));
 		}
 		else if (preLast->getOperation() == '-') {
-			changeNodes(*last, *preLast);
-			last->setOperation('-');
+			//≈сли оба числа отрицательны
+			if (last->getOperation() == '-')
+			{
+				last->setOperation('+');
+				preLast->setLastArg(to_string(last->getResult()));
+			}
+			else {
+				changeNodes(*last, *preLast);
+				last->setOperation('-');
 
-			//ћен€ем местами аргументы в св€зи обнаруженным минусом
-			changeArgs(*last);
-
-			preLast->setLastArg(to_string(last->getResult()));
+				//ћен€ем местами аргументы в св€зи обнаруженным минусом
+				changeArgs(*last);
+				preLast->setLastArg(to_string(last->getResult()));
+			}
 		}
 		else {
 			changeNodes(*last, *preLast);
