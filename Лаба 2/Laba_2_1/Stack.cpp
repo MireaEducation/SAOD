@@ -61,3 +61,16 @@ Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
 
 		return updateMass;
 }
+
+double Stack::getResultExpression()
+{
+	while (this->size != 0)
+	{
+		int last_index_oper = this->size - 1;//индекс последней операции
+		int pre_last_index_oper = last_index_oper - 1;//индекс предпоследней операции
+
+		//≈сли знак операции последнего элемента стека - имеет высокий приоритет
+		//if(m)
+	}
+	return 0.0;
+}

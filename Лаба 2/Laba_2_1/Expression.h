@@ -47,5 +47,6 @@ public:
 	double getResult();
 
 	string getLastArg();
+	string getFirstArg();
 };
 

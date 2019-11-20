@@ -70,3 +70,8 @@ string Expression::getLastArg()
 {
 	return this->lastArg;
 }
+
+string Expression::getFirstArg()
+{
+	return this->firstArg;
+}

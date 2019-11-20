@@ -45,5 +45,11 @@ public:
 		else
 			return true;
 	}
+
+	/// <summary>
+	/// ¬озвращает значение математического выражени€
+	/// </summary>
+	/// <returns></returns>
+	double getResultExpression();
 };
 
