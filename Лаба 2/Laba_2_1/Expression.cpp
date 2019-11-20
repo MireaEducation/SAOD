@@ -66,6 +66,14 @@ double Expression::getResult()
 	}
 }
 
+bool Expression::isPriorityOperation()
+{
+	if (this->operation == '*' || this->operation == '/')
+		return true;
+	else
+		return false;
+}
+
 string Expression::getLastArg()
 {
 	return this->lastArg;
@@ -74,4 +82,24 @@ string Expression::getLastArg()
 string Expression::getFirstArg()
 {
 	return this->firstArg;
+}
+
+char Expression::getOperation()
+{
+	return this->operation;
+}
+
+void Expression::setLastArg(string lastArg)
+{
+	this->lastArg = lastArg;
+}
+
+void Expression::setFirstArg(string firstArg)
+{
+	this->firstArg = firstArg;
+}
+
+void Expression::setOperation(char operation)
+{
+	this->operation = operation;
 }

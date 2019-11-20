@@ -64,13 +64,26 @@ Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
 
 double Stack::getResultExpression()
 {
-	while (this->size != 0)
+	Expression hellper;
+
+	//Пробегаемся с конца стека, удаляя посчитанные значения
+	while (this->size != 1)
 	{
-		int last_index_oper = this->size - 1;//индекс последней операции
-		int pre_last_index_oper = last_index_oper - 1;//индекс предпоследней операции
+		int indexLast= this->size - 1;//индекс последнего выражения
+
+		Expression last = this->mass[indexLast];
+		Expression preLast = this->mass[indexLast - 1];
 
 		//Если знак операции последнего элемента стека - имеет высокий приоритет
-		//if(m)
+		if (last.isPriorityOperation() || !preLast.isPriorityOperation())
+		{
+			preLast.setLastArg(to_string(last.getResult()));
+		}
+		else {
+			changeNodes(last, preLast);
+			preLast.setLastArg(to_string(last.getResult()));
+		}
+		//тут должно быть this.mass.pop()
 	}
-	return 0.0;
+	return this->mass[0].getResult();
 }

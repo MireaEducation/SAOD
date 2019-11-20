@@ -10,3 +10,10 @@ using namespace std;
 /// <param name="exp">Второй аргумент в математическом выражении</param>
 /// <returns></returns>
 bool isExpression(string exp);
+
+/// <summary>
+/// Изменяет аргументы местами, согласно высокому приориту операции - меняется порядок
+/// </summary>
+/// <param name="last">Последнее выражение</param>
+/// <param name="preLast">Предпоследнее выражение</param>
+void changeNodes(Expression &last, Expression &preLast);

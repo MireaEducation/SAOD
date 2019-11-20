@@ -46,7 +46,19 @@ public:
 	/// <returns></returns>
 	double getResult();
 
+	/// <summary>
+	/// true - если операция имеет высокий приоритет
+	/// false - если низкий приоритет
+	/// </summary>
+	/// <returns></returns>
+	bool isPriorityOperation();
+
 	string getLastArg();
 	string getFirstArg();
+	char getOperation();
+
+	void setLastArg(string lastArg);
+	void setFirstArg(string firstArg);
+	void setOperation(char operation);
 };
 
