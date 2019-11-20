@@ -46,7 +46,15 @@ int main()
 			}
 			case 2:
 			{
-				cout << exp << " = " << stack.getResultExpression() << endl;
+				if (stack.top().getOperation() != ' ')
+				{
+					cout << exp << " = " << stack.getResultExpression() << endl;
+					stack.pop();
+				}
+				else {
+					cout << "Для начала введите мат. выражение" << endl;
+				}
+
 				system("pause");
 				break;
 			}

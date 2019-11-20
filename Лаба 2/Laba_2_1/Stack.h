@@ -30,6 +30,11 @@ public:
 	void pop();
 
 	/// <summary>
+	/// Возвращает последний элемент в стеке
+	/// </summary>
+	Expression top();
+
+	/// <summary>
 	/// Возвращает тот же массив, но с новым размером
 	/// </summary>
 	/// <param name="exp">Матемическое выражение</param>

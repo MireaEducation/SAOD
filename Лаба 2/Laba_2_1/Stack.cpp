@@ -2,8 +2,7 @@
 
 Stack::Stack()
 {
-	this->mass = new Expression[1];
-	this->size = 0;
+
 }
 
 Stack::~Stack()
@@ -14,11 +13,13 @@ Stack::~Stack()
 
 void Stack::init(string exp)
 {
+	this->mass = new Expression[1];
+	this->size = 1;
+
 	Expression obj(exp);
 	while(!this->mass) this->mass = new Expression[1];
 
 	if (this->mass) {
-		this->size = 1;
 		this->mass[0] = obj;
 		
 		//Если второй аргумент является мат. выражением - добавляем в стек
@@ -51,6 +52,14 @@ void Stack::pop()
 {
 	this->mass = updateSize(this->mass, this->size, this->size - 1);
 	this->size--;
+}
+
+Expression Stack::top()
+{
+	if (this->size != 0)
+		return this->mass[this->size - 1];
+	else
+		return Expression();
 }
 
 Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
