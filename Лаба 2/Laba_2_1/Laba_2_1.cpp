@@ -46,7 +46,7 @@ int main()
 			}
 			case 2:
 			{
-
+				cout << exp << " = " << stack.getResultExpression() << endl;
 				system("pause");
 				break;
 			}
@@ -89,10 +89,13 @@ int main()
 		}
 
 	}
-	catch (const std::exception& ex)
+	catch (const std::exception & ex)
 	{
 		cout << "Ошибка: " << ex.what() << endl;
 	}
+		
+	stack.~Stack();
+		
 
 	return 0;
 }

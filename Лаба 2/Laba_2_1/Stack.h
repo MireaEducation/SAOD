@@ -10,7 +10,8 @@ private:
 
 public:
 	Stack();
-
+	~Stack();
+	
 	/// <summary>
 	/// Инициализирует стек
 	/// </summary>
@@ -22,6 +23,11 @@ public:
 	/// </summary>
 	/// <param name="elem">Новое выражение</param>
 	void push(Expression elem);
+
+	/// <summary>
+	/// Удаляет последний элемент из стека
+	/// </summary>
+	void pop();
 
 	/// <summary>
 	/// Возвращает тот же массив, но с новым размером

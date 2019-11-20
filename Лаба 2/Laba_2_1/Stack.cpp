@@ -6,6 +6,12 @@ Stack::Stack()
 	this->size = 0;
 }
 
+Stack::~Stack()
+{
+	if (mass)
+		free(mass);
+}
+
 void Stack::init(string exp)
 {
 	Expression obj(exp);
@@ -41,6 +47,12 @@ void Stack::push(Expression elem)
 	}
 }
 
+void Stack::pop()
+{
+	this->mass = updateSize(this->mass, this->size, this->size - 1);
+	this->size--;
+}
+
 Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
 {
 		Expression* updateMass = NULL;
@@ -48,14 +60,25 @@ Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
 		if (updateMass) {
 			size_t i = 0;
 
-			for (i = 0; i < size_old; i++)
+			//Если размер стека уменьшился
+			if (size_new < size_old)
 			{
-				updateMass[i] = exp[i];
+				//Копируем все элементы за исключением последнего
+				for (i = 0; i < size_new; i++)
+				{
+					updateMass[i] = exp[i];
+				}
 			}
+			else {
+				for (i = 0; i < size_old; i++)
+				{
+					updateMass[i] = exp[i];
+				}
 
-			for (; i < size_new; i++)
-			{
-				updateMass[i] = Expression();
+				for (; i < size_new; i++)
+				{
+					updateMass[i] = Expression();
+				}
 			}
 		}
 
@@ -83,7 +106,7 @@ double Stack::getResultExpression()
 			changeNodes(last, preLast);
 			preLast.setLastArg(to_string(last.getResult()));
 		}
-		//тут должно быть this.mass.pop()
+		this->pop();
 	}
 	return this->mass[0].getResult();
 }
