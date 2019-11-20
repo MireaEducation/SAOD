@@ -103,17 +103,17 @@ double Stack::getResultExpression()
 	{
 		int indexLast= this->size - 1;//индекс последнего выражения
 
-		Expression last = this->mass[indexLast];
-		Expression preLast = this->mass[indexLast - 1];
+		Expression *last = &this->mass[indexLast];
+		Expression *preLast = &this->mass[indexLast - 1];
 
 		//Если знак операции последнего элемента стека - имеет высокий приоритет
-		if (last.isPriorityOperation() || !preLast.isPriorityOperation())
+		if (last->isPriorityOperation() || !preLast->isPriorityOperation())
 		{
-			preLast.setLastArg(to_string(last.getResult()));
+			preLast->setLastArg(to_string(last->getResult()));
 		}
 		else {
-			changeNodes(last, preLast);
-			preLast.setLastArg(to_string(last.getResult()));
+			changeNodes(*last, *preLast);
+			preLast->setLastArg(to_string(last->getResult()));
 		}
 		this->pop();
 	}

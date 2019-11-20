@@ -13,7 +13,7 @@ bool isExpression(string exp)
 		return true;
 }
 
-void changeNodes(Expression& last, Expression& preLast)
+void changeNodes(Expression &last, Expression &preLast)
 {
 	string copyArg = last.getLastArg();
 	char copyOper = last.getOperation();
