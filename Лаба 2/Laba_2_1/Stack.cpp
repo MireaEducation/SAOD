@@ -3,6 +3,7 @@
 Stack::Stack()
 {
 	this->mass = nullptr;
+	this->size = 0;
 }
 
 Stack::~Stack()
@@ -39,7 +40,6 @@ void Stack::init(string exp)
 void Stack::push(Expression elem)
 {
 	this->mass = this->updateSize(this->mass, this->size, this->size + 1);
-	//this->mass = (Expression*)realloc(this->mass, sizeof(Expression) * this->size);
 	this->size++;
 
 	if (this->mass) {

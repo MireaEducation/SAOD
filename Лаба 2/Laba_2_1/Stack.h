@@ -44,20 +44,6 @@ public:
 	/// <returns></returns>
 	Expression* updateSize(const Expression* exp, int size_old, int size_new);
 
-	bool isExpression(string exp)
-	{
-		int index = -1;
-
-		Expression obj;
-
-		obj.getCharOperation(exp, index);
-
-		if (index == -1)
-			return false;
-		else
-			return true;
-	}
-
 	/// <summary>
 	/// ¬озвращает значение математического выражени€
 	/// </summary>

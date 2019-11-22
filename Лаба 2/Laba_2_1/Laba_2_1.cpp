@@ -102,9 +102,6 @@ int main()
 	{
 		cout << "Ошибка: " << ex.what() << endl;
 	}
-		
-	//stack.~Stack();
-		
 
 	return 0;
 }

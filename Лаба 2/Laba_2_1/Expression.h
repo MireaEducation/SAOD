@@ -39,7 +39,7 @@ public:
 	/// <param name="exp">Матемическое выражение</param>
 	/// <param name="index">Индекс знака операции в выражении</param>
 	/// <returns></returns>
-	static char getCharOperation(string exp, int& index);
+	char getCharOperation(string exp, int& index);
 
 	/// <summary>
 	/// Возвращает результат выражения

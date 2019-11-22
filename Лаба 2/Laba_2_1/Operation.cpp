@@ -15,6 +15,7 @@ bool isExpression(string exp)
 
 void changeNodes(Expression &last, Expression &preLast)
 {
+	
 	string copyArg = last.getLastArg();
 	char copyOper = last.getOperation();
 
