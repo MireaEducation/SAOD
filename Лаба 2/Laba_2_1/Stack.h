@@ -36,15 +36,6 @@ public:
 	Expression top();
 
 	/// <summary>
-	/// Возвращает тот же массив, но с новым размером
-	/// </summary>
-	/// <param name="exp">Матемическое выражение</param>
-	/// <param name="size_old">Старый размер массива</param>
-	/// <param name="size_new">Новый размер массива</param>
-	/// <returns></returns>
-	Expression* updateSize(const Expression* exp, int size_old, int size_new);
-
-	/// <summary>
 	/// Возвращает значение математического выражения
 	/// </summary>
 	/// <returns></returns>

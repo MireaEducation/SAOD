@@ -32,3 +32,35 @@ void changeArgs(Expression& last)
 	last.setFirstArg(last.getLastArg());
 	last.setLastArg(copy);
 }
+
+Expression* updateSize(const Expression* exp, int size_old, int size_new)
+{
+	Expression* updateMass = NULL;
+	updateMass = new Expression[size_new];
+	if (updateMass) {
+		size_t i = 0;
+
+		//Если размер стека уменьшился
+		if (size_new < size_old)
+		{
+			//Копируем все элементы за исключением последнего
+			for (i = 0; i < size_new; i++)
+			{
+				updateMass[i] = exp[i];
+			}
+		}
+		else {
+			for (i = 0; i < size_old; i++)
+			{
+				updateMass[i] = exp[i];
+			}
+
+			for (; i < size_new; i++)
+			{
+				updateMass[i] = Expression();
+			}
+		}
+	}
+
+	return updateMass;
+}

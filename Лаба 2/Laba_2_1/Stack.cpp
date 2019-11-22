@@ -39,7 +39,7 @@ void Stack::init(string exp)
 
 void Stack::push(Expression elem)
 {
-	this->mass = this->updateSize(this->mass, this->size, this->size + 1);
+	this->mass = updateSize(this->mass, this->size, this->size + 1);
 	this->size++;
 
 	if (this->mass) {
@@ -62,38 +62,6 @@ Expression Stack::top()
 		return this->mass[this->size - 1];
 	else
 		return Expression();
-}
-
-Expression* Stack::updateSize(const Expression* exp, int size_old, int size_new)
-{
-		Expression* updateMass = NULL;
-		updateMass = new Expression[size_new];
-		if (updateMass) {
-			size_t i = 0;
-
-			//Если размер стека уменьшился
-			if (size_new < size_old)
-			{
-				//Копируем все элементы за исключением последнего
-				for (i = 0; i < size_new; i++)
-				{
-					updateMass[i] = exp[i];
-				}
-			}
-			else {
-				for (i = 0; i < size_old; i++)
-				{
-					updateMass[i] = exp[i];
-				}
-
-				for (; i < size_new; i++)
-				{
-					updateMass[i] = Expression();
-				}
-			}
-		}
-
-		return updateMass;
 }
 
 double Stack::getResultExpression()
