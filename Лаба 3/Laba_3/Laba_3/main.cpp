@@ -1,7 +1,5 @@
-#include <iostream>
 #include <windows.h>
-
-using namespace std;
+#include "Opeartion.h"
 
 int main()
 {
@@ -17,7 +15,7 @@ int main()
 			system("cls");
 			cout << "Лабораторная работа №3 Бикеева А. И. Вариант 2\n\n";
 			cout << "Найти n-ое число Фибоначчи\n";
-			cout << "\nМеню - выбор структуры данных\n";
+			cout << "\nМеню\n";
 			cout << "1) Вычислить\n";
 			cout << "0) Выход\n";
 			cout << "\nВаш выбор: ";
@@ -31,7 +29,11 @@ int main()
 			cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
 			switch (answer) {
 				case 1: {
+					cout << "Введите n: ";
 
+					short n = 0;
+					cin >> n;
+					cout << "F[" << n << "] = " << Fibonachi(n, 0, 0, 0) << endl;
 					system("pause");
 					break;
 				}
