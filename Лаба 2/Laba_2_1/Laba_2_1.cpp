@@ -176,9 +176,9 @@ int main()
 						{
 							if (!expStack.empty())
 							{
-								double res = stackLink->getResultExpression(stackLink);
+								double res = hellper.getResultExpression(expStack);
 								cout << exp << " = " << res << endl;
-								stackLink->pop();
+								expStack.pop();
 							}
 							else {
 								cout << "Для начала введите мат. выражение" << endl;

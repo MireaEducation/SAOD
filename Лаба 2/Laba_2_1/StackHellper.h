@@ -11,6 +11,11 @@ public:
 	/// <param name="exp">ћатематическое выражение</param>
 	static void init(stack<Expression>& mass, Expression elem, string exp);
 
+	/// <summary>
+	/// ¬озвращает значение математического выражени€
+	/// </summary>
+	/// <returns></returns>
+	static double getResultExpression(stack<Expression>& mass);
 private:
 	static Expression* mass;
 };
