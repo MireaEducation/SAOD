@@ -23,8 +23,16 @@ double StackHellper::getResultExpression(stack<Expression>& mass)
 	{
 		int indexLast = mass.size() - 1;//индекс последнего выражения
 
-		Expression* last = &mass.top(); mass.pop();
-		Expression* preLast = &mass.top();
+		Expression* last = &mass.top(); 
+		
+		Expression* preLast = nullptr;
+		{
+			Expression copy = mass.top();
+			mass.pop();
+			preLast = &mass.top();
+			mass.push(copy);
+		}
+			
 
 		//Если знак операции последнего элемента стека - имеет высокий приоритет
 		if (last->isPriorityOperation() || (!preLast->isPriorityOperation() && preLast->getOperation() != '-'))
@@ -64,7 +72,7 @@ double StackHellper::getResultExpression(stack<Expression>& mass)
 				changeArgs(*preLast);
 			}
 		}
-		//this->pop();
+		mass.pop();
 	}
 	return mass.top().getResult();//this->mass[0].getResult();
 }
