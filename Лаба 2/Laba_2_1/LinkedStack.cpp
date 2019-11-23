@@ -18,11 +18,10 @@ LinkedStack::LinkedStack(Expression elem)
 	if (this->value.getOperation() != ' ') {
 
 		//Если второй аргумент является мат. выражением - добавляем в стек
-		while (isExpression(elem.getLastArg()))
+		if (isExpression(elem.getLastArg()))
 		{
-			Expression secondExp(elem.getLastArg());
-			this->push(secondExp);
-			elem = secondExp;
+			elem = Expression(elem.getLastArg());
+			this->push(elem);
 		}
 	}
 	else {
@@ -38,8 +37,8 @@ LinkedStack::~LinkedStack()
 
 void LinkedStack::push(Expression elem)
 {
-	LinkedStack* stack = new LinkedStack(elem);
-	this->next = stack;
+	LinkedStack* stack = this->top();
+	stack->next = new LinkedStack(elem);
 }
 
 void LinkedStack::pop()
