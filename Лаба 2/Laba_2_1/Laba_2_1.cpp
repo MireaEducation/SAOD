@@ -1,9 +1,9 @@
 ﻿#include <iostream>
 #include <windows.h>
 #include <algorithm>
-#include <stack>
 #include "StackDynamic.h"
 #include "LinkedStack.h"
+#include "StackHellper.h"
 
 int main()
 {
@@ -144,7 +144,7 @@ int main()
 				}
 				case 3: {
 #pragma region 4 Заданме
-
+					StackHellper hellper;
 					while (answer2 != 0) {
 						system("cls");
 						cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
@@ -165,7 +165,8 @@ int main()
 						switch (answer2) {
 						case 1: {
 							cin >> exp;
-							//stackLink = new LinkedStack(Expression(exp));
+							hellper.init(expStack, Expression(exp), exp);
+
 
 							cout << "Математическое выражение спешно распарсено в стек" << endl;
 							system("pause");
