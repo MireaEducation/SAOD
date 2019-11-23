@@ -37,6 +37,6 @@ public:
 	/// ¬озвращает значение математического выражени€
 	/// </summary>
 	/// <returns></returns>
-	double getResultExpression();
+	double getResultExpression(LinkedStack* head);
 };
 

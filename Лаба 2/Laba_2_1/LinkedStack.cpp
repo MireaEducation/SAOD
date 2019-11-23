@@ -2,12 +2,12 @@
 
 LinkedStack* LinkedStack::preTop()
 {
-	LinkedStack ptr = *this;
-	while (ptr.next != nullptr && ptr.next->next != nullptr)
+	LinkedStack* ptr = this;
+	while (ptr->next != nullptr && ptr->next->next != nullptr)
 	{
-		ptr = *ptr.next;
+		ptr = ptr->next;
 	}
-	return &ptr;
+	return ptr;
 }
 
 LinkedStack::LinkedStack(Expression elem)
@@ -44,25 +44,27 @@ void LinkedStack::push(Expression elem)
 
 void LinkedStack::pop()
 {
-
+	LinkedStack* preLast = this->preTop();
+	free(preLast->next);
+	preLast->next = nullptr;
 }
 
 LinkedStack* LinkedStack::top()
 {
-	LinkedStack ptr = *this;
-	while (ptr.next != nullptr)
+	LinkedStack* ptr = this;
+	while (ptr->next != nullptr)
 	{
-		ptr = *ptr.next;
+		ptr = ptr->next;
 	}
-	return &ptr;
+	return ptr;
 }
 
-double LinkedStack::getResultExpression()
+double LinkedStack::getResultExpression(LinkedStack* head)
 {
 	Expression hellper;
 
 	//Пробегаемся с конца стека, удаляя посчитанные значения
-	while (this->next != nullptr)
+	while (this->top() != head)
 	{
 		Expression* last = &this->top()->value;
 		Expression* preLast = &this->preTop()->value;

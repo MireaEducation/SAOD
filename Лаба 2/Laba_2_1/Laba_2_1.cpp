@@ -120,7 +120,7 @@ int main()
 							{
 								if (stackLink != nullptr)
 								{
-									double res = stackLink->getResultExpression();
+									double res = stackLink->getResultExpression(stackLink);
 									cout << exp << " = " << res << endl;
 									stackLink->pop();
 								}
