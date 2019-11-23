@@ -1,27 +1,18 @@
 #include "LinkedStack.h"
 
-LinkedStack::LinkedStack()
+LinkedStack::LinkedStack(Expression elem)
 {
-}
+	this->next = nullptr;
+	this->value = elem;
 
-LinkedStack::~LinkedStack()
-{
-}
-
-void LinkedStack::init(string exp)
-{
-	this->current = new Expression(exp);
-
-	if (this->current) {
-		Expression* obj = new Expression(exp);
-		this->current = obj;
+	if (this->value.getOperation() != ' ') {
 
 		//Если второй аргумент является мат. выражением - добавляем в стек
-		while (isExpression(obj->getLastArg()))
+		while (isExpression(elem.getLastArg()))
 		{
-			Expression* secondExp = new Expression(obj->getLastArg());
+			Expression secondExp(elem.getLastArg());
 			this->push(secondExp);
-			obj = secondExp;
+			elem = secondExp;
 		}
 	}
 	else {
@@ -29,17 +20,31 @@ void LinkedStack::init(string exp)
 	}
 }
 
-void LinkedStack::push(Expression* elem)
+LinkedStack::~LinkedStack()
 {
+	if (this->next != nullptr)
+		free(this->next);
+}
+
+void LinkedStack::push(Expression elem)
+{
+	LinkedStack* stack = new LinkedStack(elem);
+	this->next = stack;
 }
 
 void LinkedStack::pop()
 {
+
 }
 
-Expression LinkedStack::top()
+LinkedStack* LinkedStack::top()
 {
-	return Expression();
+	LinkedStack ptr = *this;
+	while (ptr.next != nullptr)
+	{
+		ptr = *ptr.next;
+	}
+	return &ptr;
 }
 
 double LinkedStack::getResultExpression()

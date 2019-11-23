@@ -10,7 +10,7 @@ int main()
 
 	short answer1 = 10, answer2 = 10;
 	Stack stack;
-	LinkedStack stackLink;
+	LinkedStack* stackLink = nullptr;
 
 	string exp = "";
 	try
@@ -74,8 +74,8 @@ int main()
 								else {
 									cout << "Для начала введите мат. выражение" << endl;
 								}
-								break;
 								system("pause");
+								break;
 							}
 							default:
 							{
@@ -110,11 +110,28 @@ int main()
 						switch (answer2) {
 							case 1:{
 								cin >> exp;
-								stackLink.init(exp);
+								stackLink = new LinkedStack(Expression(exp));//stackLink->init(exp);
 
 								cout << "Математическое выражение спешно распарсено в стек" << endl;
 								system("pause");
 								break;
+							}
+							case 2:
+							{
+								if (stackLink != nullptr)
+								{
+									double res = stackLink->getResultExpression();
+									cout << exp << " = " << res << endl;
+									stack.pop();
+								}
+								else {
+									cout << "Для начала введите мат. выражение" << endl;
+								}
+								system("pause");
+								break;
+							}
+							case 0: {
+
 							}
 							default:
 								break;

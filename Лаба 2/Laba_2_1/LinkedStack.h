@@ -6,25 +6,18 @@
 class LinkedStack
 {
 private:
-	Expression* next;
-	Expression* current;
-	int size;
+	LinkedStack* next;
+	Expression value;
 
 public:
-	LinkedStack();
+	LinkedStack(Expression elem);
 	~LinkedStack();
-
-	/// <summary>
-	/// Инициализирует стек
-	/// </summary>
-	/// <param name="exp">Математическое выражение</param>
-	void init(string exp);
 
 	/// <summary>
 	/// Добавляет в конец стека новый элемент
 	/// </summary>
 	/// <param name="elem">Новое выражение</param>
-	void push(Expression* elem);
+	void push(Expression elem);
 
 	/// <summary>
 	/// Удаляет последний элемент из стека
@@ -34,7 +27,7 @@ public:
 	/// <summary>
 	/// Возвращает последний элемент в стеке
 	/// </summary>
-	Expression top();
+	LinkedStack* top();
 
 	/// <summary>
 	/// Возвращает значение математического выражения
