@@ -3,15 +3,15 @@
 #include "stdlib.h"
 #include "math.h"
 
-class Stack
+class StackDynamic
 {
 private:
 	Expression* mass;
 	int size;
 
 public:
-	Stack();
-	~Stack();
+	StackDynamic();
+	~StackDynamic();
 	
 	/// <summary>
 	/// Инициализирует стек

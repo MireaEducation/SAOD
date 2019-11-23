@@ -1,18 +1,18 @@
-#include "Stack.h"
+#include "StackDynamic.h"
 
-Stack::Stack()
+StackDynamic::StackDynamic()
 {
 	this->mass = nullptr;
 	this->size = 0;
 }
 
-Stack::~Stack()
+StackDynamic::~StackDynamic()
 {
 	if (mass != nullptr && this->size != 0)
 		free(mass);
 }
 
-void Stack::init(string exp)
+void StackDynamic::init(string exp)
 {
 	this->mass = new Expression[1];
 	this->size = 1;
@@ -37,7 +37,7 @@ void Stack::init(string exp)
 	}
 }
 
-void Stack::push(Expression elem)
+void StackDynamic::push(Expression elem)
 {
 	this->mass = updateSize(this->mass, this->size, this->size + 1);
 	this->size++;
@@ -50,13 +50,13 @@ void Stack::push(Expression elem)
 	}
 }
 
-void Stack::pop()
+void StackDynamic::pop()
 {
 	this->mass = updateSize(this->mass, this->size, this->size - 1);
 	this->size--;
 }
 
-Expression Stack::top()
+Expression StackDynamic::top()
 {
 	if (this->size != 0)
 		return this->mass[this->size - 1];
@@ -64,7 +64,7 @@ Expression Stack::top()
 		return Expression();
 }
 
-double Stack::getResultExpression()
+double StackDynamic::getResultExpression()
 {
 	Expression hellper;
 
