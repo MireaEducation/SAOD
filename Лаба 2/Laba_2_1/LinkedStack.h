@@ -9,6 +9,10 @@ private:
 	LinkedStack* next;
 	Expression value;
 
+	/// <summary>
+	/// Возвращает предпоследний элемент в стеке
+	/// </summary>
+	LinkedStack* preTop();
 public:
 	LinkedStack(Expression elem);
 	~LinkedStack();

@@ -122,7 +122,7 @@ int main()
 								{
 									double res = stackLink->getResultExpression();
 									cout << exp << " = " << res << endl;
-									stack.pop();
+									stackLink->pop();
 								}
 								else {
 									cout << "Для начала введите мат. выражение" << endl;
