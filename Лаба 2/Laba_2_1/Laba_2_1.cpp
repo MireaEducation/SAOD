@@ -108,6 +108,14 @@ int main()
 						system("cls");
 						cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
 						switch (answer2) {
+							case 1:{
+								cin >> exp;
+								stackLink.init(exp);
+
+								cout << "Математическое выражение спешно распарсено в стек" << endl;
+								system("pause");
+								break;
+							}
 							default:
 								break;
 						}
