@@ -20,3 +20,10 @@ int Fibonachi(int n, int sum_first, int sum_second, short& depth);
 /// <param name="n">Кол-во элементов, которые нужно добавить к head</param>
 /// <returns></returns>
 LinkedList* CreateList(Node* head, int n);
+
+/// <summary>
+/// Возвращает последний узел списка
+/// </summary>
+/// <param name="current">Указатель на текущий элемент списка</param>
+/// <returns></returns>
+Node* getLastNode(Node* current);

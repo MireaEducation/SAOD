@@ -36,3 +36,16 @@ LinkedList* CreateList(Node* head, int n)
 
 	return head;
 }
+
+Node* getLastNode(Node* current)
+{
+	if (current)
+	{
+		if (current->next)
+		{
+			return getLastNode(current->next);
+		}
+		return current;
+	}
+	return nullptr;
+}

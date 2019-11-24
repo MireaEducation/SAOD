@@ -45,7 +45,7 @@ int main()
 					cin >> n;
 					if(linkLst != nullptr)
 						
-					CreateList()
+					
 					system("pause");
 					break;
 				}
