@@ -43,8 +43,10 @@ int main()
 					cout << "¬ведите n: ";
 
 					cin >> n;
-					if(linkLst != nullptr)
-						
+					if (linkLst != nullptr)
+						ClearList(linkLst);
+
+					linkLst = CreateList(linkLst, n);
 					
 					system("pause");
 					break;
@@ -57,6 +59,8 @@ int main()
 					break;
 			}
 		}
+		if (linkLst != nullptr)
+			ClearList(linkLst);
 	}
 	catch (const std::exception* exc)
 	{
