@@ -48,6 +48,19 @@ int main()
 
 					linkLst = CreateList(linkLst, n);
 					
+					cout << "Введите значение искомого узла: ";
+
+					int value = 0;
+					cin >> value;
+					
+					LinkedList* elem = FindNode(linkLst, value);
+					if (elem != nullptr) {
+						cout << "Данный узел имеет адрес: " << &elem << endl;
+					}
+					else {
+						cout << "Узла с заданным значение value - не найден в списке\n";
+					}
+
 					system("pause");
 					break;
 				}

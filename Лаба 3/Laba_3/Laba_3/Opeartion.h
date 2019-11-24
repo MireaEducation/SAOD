@@ -26,3 +26,11 @@ LinkedList* CreateList(Node* head, int n);
 /// </summary>
 /// <param name="head">Укзаатель на текущий элемент списка</param>
 void ClearList(Node* head);
+
+/// <summary>
+/// Вовзращает указатель на узел списка с заданным значением value
+/// </summary>
+/// <param name="current">Указатель на текущий элемент списка</param>
+/// <param name="value">Значение искомого узла</param>
+/// <returns></returns>
+Node* FindNode(Node* current, int value);

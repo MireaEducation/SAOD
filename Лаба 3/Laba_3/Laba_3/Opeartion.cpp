@@ -30,8 +30,6 @@ LinkedList* CreateList(Node* head, int n)
 	cout << "Введите значения для"<<n<<" элемента списка: ";
 	cin >> head->value;
 
-	cout << "\n\n";
-
 	head->next = CreateList(head->next, n - 1);
 
 	return head;
@@ -47,5 +45,18 @@ void ClearList(Node* head)
 		}
 		free(head->next);
 	}
+}
+
+Node* FindNode(Node* current, int value)
+{
+	if (current)
+	{
+		if (current->value == value)
+		{
+			return current;
+		}
+		return FindNode(current->next, value);
+	}
+	return nullptr;
 }
 
