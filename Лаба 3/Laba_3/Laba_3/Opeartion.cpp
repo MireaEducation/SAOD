@@ -37,15 +37,15 @@ LinkedList* CreateList(Node* head, int n)
 	return head;
 }
 
-Node* getLastNode(Node* current)
+void ClearList(Node* head)
 {
-	if (current)
+	if (head->next != nullptr)
 	{
-		if (current->next)
+		if (head->next->next != nullptr)
 		{
-			return getLastNode(current->next);
+			ClearList(head->next);
 		}
-		return current;
+		free(head->next);
 	}
-	return nullptr;
 }
+

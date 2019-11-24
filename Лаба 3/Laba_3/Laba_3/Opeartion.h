@@ -5,25 +5,24 @@
 using namespace std;
 
 /// <summary>
-/// Возвращает n-ое число Фибоначчи
+/// Р’РѕР·РІСЂР°С‰Р°РµС‚ n-РѕРµ С‡РёСЃР»Рѕ Р¤РёР±РѕРЅР°С‡С‡Рё
 /// </summary>
-/// <param name="n">Номер числа Фибоначчи</param>
-/// <param name="sum_first">k-1 число Фибоначчи</param>
-/// <param name="sum_second">k число Фибоначчи</param>
-/// <param name="depth">Глубина рекурсии</param>
+/// <param name="n">РќРѕРјРµСЂ С‡РёСЃР»Р° Р¤РёР±РѕРЅР°С‡С‡Рё</param>
+/// <param name="sum_first">k-1 С‡РёСЃР»Рѕ Р¤РёР±РѕРЅР°С‡С‡Рё</param>
+/// <param name="sum_second">k С‡РёСЃР»Рѕ Р¤РёР±РѕРЅР°С‡С‡Рё</param>
+/// <param name="depth">Р“Р»СѓР±РёРЅР° СЂРµРєСѓСЂСЃРёРё</param>
 int Fibonachi(int n, int sum_first, int sum_second, short& depth);
 
 /// <summary>
-/// Создает односвязанный список из целых чисел
+/// РЎРѕР·РґР°РµС‚ РѕРґРЅРѕСЃРІСЏР·Р°РЅРЅС‹Р№ СЃРїРёСЃРѕРє РёР· С†РµР»С‹С… С‡РёСЃРµР»
 /// </summary>
-/// <param name="head">Указатель на элемент списка</param>
-/// <param name="n">Кол-во элементов, которые нужно добавить к head</param>
+/// <param name="head">РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°</param>
+/// <param name="n">РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ Рє head</param>
 /// <returns></returns>
 LinkedList* CreateList(Node* head, int n);
 
 /// <summary>
-/// Возвращает последний узел списка
+/// РћС‡РёС‰Р°РµС‚ СЃРїРёСЃРѕРє
 /// </summary>
-/// <param name="current">Указатель на текущий элемент списка</param>
-/// <returns></returns>
-Node* getLastNode(Node* current);
+/// <param name="head">РЈРєР·Р°Р°С‚РµР»СЊ РЅР° С‚РµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°</param>
+void ClearList(Node* head);
