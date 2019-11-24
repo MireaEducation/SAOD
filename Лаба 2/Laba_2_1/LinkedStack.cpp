@@ -10,6 +10,16 @@ LinkedStack* LinkedStack::preTop()
 	return ptr;
 }
 
+LinkedStack* LinkedStack::prePreTop()
+{
+	LinkedStack* ptr = this;
+	while (ptr->next != nullptr && ptr->next->next != nullptr && ptr->next->next->next != nullptr)
+	{
+		ptr = ptr->next;
+	}
+	return ptr;
+}
+
 LinkedStack::LinkedStack(Expression elem)
 {
 	this->next = nullptr;
@@ -67,6 +77,7 @@ double LinkedStack::getResultExpression(LinkedStack* head)
 	{
 		Expression* last = &this->top()->value;
 		Expression* preLast = &this->preTop()->value;
+		Expression* prePreLast = &this->prePreTop()->value;
 
 		//≈сли знак операции последнего элемента стека - имеет высокий приоритет
 		if (last->isPriorityOperation() || (!preLast->isPriorityOperation() && preLast->getOperation() != '-'))
@@ -101,10 +112,20 @@ double LinkedStack::getResultExpression(LinkedStack* head)
 			changeNodes(*last, *preLast);
 			changeArgs(*last);
 
-			preLast->setLastArg(to_string(last->getResult()));
-			if (preLast->getOperation() == '-') {
-				changeArgs(*preLast);
+			if (prePreLast->getOperation() == '-')
+			{
+				preLast->setOperation('-');
+				prePreLast->setOperation('+');
+				preLast->setLastArg(to_string(last->getResult()));
 			}
+			else {
+				preLast->setLastArg(to_string(last->getResult()));
+				if (preLast->getOperation() == '-') {
+					changeArgs(*preLast);
+				}
+			}
+
+
 		}
 		this->pop();
 	}

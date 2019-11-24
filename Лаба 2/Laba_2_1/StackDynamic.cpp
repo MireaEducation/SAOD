@@ -75,6 +75,7 @@ double StackDynamic::getResultExpression()
 
 		Expression *last = &this->mass[indexLast];
 		Expression *preLast = &this->mass[indexLast - 1];
+		Expression* prePreLast = &this->mass[indexLast - 2];
 
 		//≈сли знак операции последнего элемента стека - имеет высокий приоритет
 		if (last->isPriorityOperation() || (!preLast->isPriorityOperation() && preLast->getOperation() != '-'))
@@ -108,10 +109,18 @@ double StackDynamic::getResultExpression()
 		else {
 			changeNodes(*last, *preLast);
 			changeArgs(*last);
-			
-			preLast->setLastArg(to_string(last->getResult()));
-			if (preLast->getOperation() == '-') {
-				changeArgs(*preLast);
+
+			if (prePreLast->getOperation() == '-')
+			{
+				preLast->setOperation('-');
+				prePreLast->setOperation('+');
+				preLast->setLastArg(to_string(last->getResult()));
+			}
+			else {
+				preLast->setLastArg(to_string(last->getResult()));
+				if (preLast->getOperation() == '-') {
+					changeArgs(*preLast);
+				}
 			}
 		}
 		this->pop();

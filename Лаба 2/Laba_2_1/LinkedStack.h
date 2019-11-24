@@ -13,6 +13,11 @@ private:
 	/// Возвращает предпоследний элемент в стеке
 	/// </summary>
 	LinkedStack* preTop();
+
+	/// <summary>
+	/// Возвращает предпоследний элемент в стеке
+	/// </summary>
+	LinkedStack* prePreTop();
 public:
 	LinkedStack(Expression elem);
 	~LinkedStack();

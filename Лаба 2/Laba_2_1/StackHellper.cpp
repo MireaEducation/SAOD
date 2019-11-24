@@ -23,14 +23,23 @@ double StackHellper::getResultExpression(stack<Expression>& mass)
 	{
 		int indexLast = mass.size() - 1;//индекс последнего выражения
 
-		Expression* last = &mass.top(); 
-		
+		Expression* last = &mass.top();
 		Expression* preLast = nullptr;
+		Expression* prePreLast = nullptr;
 		{
-			Expression copy = mass.top();
+			Expression copyPre = mass.top();
 			mass.pop();
 			preLast = &mass.top();
-			mass.push(copy);
+
+			Expression copyPrePre = mass.top();
+			if (mass.size() != 1)
+			{
+				mass.pop();
+				prePreLast = &mass.top();
+
+				mass.push(copyPrePre);
+			}
+			mass.push(copyPre);
 		}
 			
 
@@ -67,9 +76,17 @@ double StackHellper::getResultExpression(stack<Expression>& mass)
 			changeNodes(*last, *preLast);
 			changeArgs(*last);
 
-			preLast->setLastArg(to_string(last->getResult()));
-			if (preLast->getOperation() == '-') {
-				changeArgs(*preLast);
+			if (prePreLast != nullptr && prePreLast->getOperation() == '-')
+			{
+				preLast->setOperation('-');
+				prePreLast->setOperation('+');
+				preLast->setLastArg(to_string(last->getResult()));
+			}
+			else {
+				preLast->setLastArg(to_string(last->getResult()));
+				if (preLast->getOperation() == '-') {
+					changeArgs(*preLast);
+				}
 			}
 		}
 		mass.pop();
