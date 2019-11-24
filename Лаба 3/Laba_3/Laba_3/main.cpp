@@ -8,15 +8,16 @@ int main()
 
 
 	short answer = 10;
-	
+	LinkedList* linkLst = nullptr;
+
 	try
 	{
 		while (answer != 0) {
 			system("cls");
 			cout << "Лабораторная работа №3 Бикеева А. И. Вариант 2\n\n";
-			cout << "Найти n-ое число Фибоначчи\n";
 			cout << "\nМеню\n";
-			cout << "1) Вычислить\n";
+			cout << "1) Найти n-ое число Фибоначчи\n";
+			cout << "2) Найти указатель на n-ый элемент списка\n";
 			cout << "0) Выход\n";
 			cout << "\nВаш выбор: ";
 			while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -27,13 +28,24 @@ int main()
 			}
 			system("cls");
 			cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
+			short n = 0;
 			switch (answer) {
 				case 1: {
 					cout << "Введите n: ";
 
-					short n = 0, depth = 0;
+					short depth = 0;
 					cin >> n;
 					cout << "F[" << n << "] = " << Fibonachi(n, 0, 0, depth) << endl<<"Глубина рекурсии: "<<depth<<endl;
+					system("pause");
+					break;
+				}
+				case 2: {
+					cout << "Введите n: ";
+
+					cin >> n;
+					if(linkLst != nullptr)
+						
+					CreateList()
 					system("pause");
 					break;
 				}
