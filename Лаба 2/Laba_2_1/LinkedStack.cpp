@@ -25,12 +25,27 @@ LinkedStack::LinkedStack(Expression elem)
 	this->next = nullptr;
 	this->value = elem;
 
-	if (this->value.getOperation() != ' ') {
+	if (elem.isPriorityOperation() && isExpression(elem.getLastArg()))
+	{
+		Expression expNew(elem.getLastArg());
+		Expression exp = Expression(
+			elem.getFirstArg() +
+			elem.getOperation() +
+			Expression(elem.getLastArg()).getFirstArg()
+		);
+
+		expNew.setFirstArg(to_string(exp.getResult()));
+
+		this->value = elem = expNew;
+	}
+
+	if (elem.getOperation() != ' ') {
 
 		//≈сли второй аргумент €вл€етс€ мат. выражением - добавл€ем в стек
 		if (isExpression(elem.getLastArg()))
 		{
 			elem = Expression(elem.getLastArg());
+
 			this->push(elem);
 		}
 	}
@@ -108,11 +123,12 @@ double LinkedStack::getResultExpression(LinkedStack* head)
 				preLast->setLastArg(to_string(abs(res)));
 			}
 		}
-		else {
+		else {//≈сли операци€ / или *
+			
 			changeNodes(*last, *preLast);
 			changeArgs(*last);
 
-			if (prePreLast->getOperation() == '-')
+			if (prePreLast != preLast && prePreLast->getOperation() == '-')
 			{
 				preLast->setOperation('-');
 				prePreLast->setOperation('+');
