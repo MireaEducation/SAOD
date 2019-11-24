@@ -10,4 +10,4 @@ using namespace std;
 /// <param name="sum_first">k-1 число Фибоначчи</param>
 /// <param name="sum_second">k число Фибоначчи</param>
 /// <param name="depth">Глубина рекурсии</param>
-int Fibonachi(int n, int sum_first, int sum_second, int depth);
+int Fibonachi(int n, int sum_first, int sum_second, short& depth);

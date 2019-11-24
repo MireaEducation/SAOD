@@ -31,9 +31,9 @@ int main()
 				case 1: {
 					cout << "Введите n: ";
 
-					short n = 0;
+					short n = 0, depth = 0;
 					cin >> n;
-					cout << "F[" << n << "] = " << Fibonachi(n, 0, 0, 0) << endl;
+					cout << "F[" << n << "] = " << Fibonachi(n, 0, 0, depth) << endl<<"Глубина рекурсии: "<<depth<<endl;
 					system("pause");
 					break;
 				}
