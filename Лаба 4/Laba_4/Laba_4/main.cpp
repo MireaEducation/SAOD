@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include "RedBlackTree.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
+	RedBlackTree rbTree;
 
 	while (answer != 0) {
 		system("cls");
