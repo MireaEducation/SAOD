@@ -4,10 +4,41 @@ void StackHellper::init(stack<Expression> &mass, Expression elem,  string exp)
 {
 	mass.push(elem);
 
+	if (elem.isPriorityOperation() && isExpression(elem.getLastArg()))
+	{
+		Expression expNew(elem.getLastArg());
+		Expression exp = Expression(
+			elem.getFirstArg() +
+			elem.getOperation() +
+			Expression(elem.getLastArg()).getFirstArg()
+		);
+
+		expNew.setFirstArg(to_string(exp.getResult()));
+
+		mass.pop();
+		elem = expNew;
+		mass.push(elem);
+	}
+
 	//Если второй аргумент является мат. выражением - добавляем в стек
 	while (isExpression(elem.getLastArg()))
 	{
 		Expression secondExp(elem.getLastArg());
+
+		if (secondExp.isPriorityOperation() && isExpression(secondExp.getLastArg()))
+		{
+			Expression expNew(secondExp.getLastArg());
+			Expression exp = Expression(
+				secondExp.getFirstArg() +
+				secondExp.getOperation() +
+				Expression(secondExp.getLastArg()).getFirstArg()
+			);
+
+			expNew.setFirstArg(to_string(exp.getResult()));
+
+			elem = secondExp = expNew;
+		}
+
 		mass.push(secondExp);
 
 		elem = secondExp;
