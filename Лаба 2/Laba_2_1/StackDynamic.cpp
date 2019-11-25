@@ -23,11 +23,40 @@ void StackDynamic::init(string exp)
 	if (this->mass) {
 		Expression obj(exp);
 		this->mass[0] = obj;
-		
+
+		if (obj.isPriorityOperation() && isExpression(obj.getLastArg()))
+		{
+			Expression expNew(obj.getLastArg());
+			Expression exp = Expression(
+				obj.getFirstArg() +
+				obj.getOperation() +
+				Expression(obj.getLastArg()).getFirstArg()
+			);
+
+			expNew.setFirstArg(to_string(exp.getResult()));
+
+			this->mass[0] = obj = expNew;
+		}
+
 		//Если второй аргумент является мат. выражением - добавляем в стек
 		while (isExpression(obj.getLastArg()))
 		{
 			Expression secondExp(obj.getLastArg());
+
+			if (secondExp.isPriorityOperation() && isExpression(secondExp.getLastArg()))
+			{
+				Expression expNew(secondExp.getLastArg());
+				Expression exp = Expression(
+					secondExp.getFirstArg() +
+					secondExp.getOperation() +
+					Expression(secondExp.getLastArg()).getFirstArg()
+				);
+
+				expNew.setFirstArg(to_string(exp.getResult()));
+
+				obj = secondExp = expNew;
+			}
+
 			this->push(secondExp);
 			obj = secondExp;
 		}
