@@ -13,10 +13,23 @@ public:
 	~RedBlackTree();
 
 	/// <summary>
+	/// Делает балансирвоку вставленного узла Х
+	/// </summary>
+	/// <param name="x">Вставленный узел в дерево</param>
+	void BalanceInsert(Node* x);
+
+
+	/// <summary>
 	/// Добавляет в дерево элемент с указанным значением
 	/// </summary>
 	/// <param name="data">Значение добавляемого узла</param>
 	/// <returns></returns>
 	Node* InsertNode(char data);
+
+	/// <summary>
+	/// Делае
+	/// </summary>
+	/// <param name="x"></param>
+	void RotateRight(Node* x);
 };
 
