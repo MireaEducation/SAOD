@@ -23,11 +23,12 @@ Node* RedBlackTree::InsertNode(char data)
 
 	// Для нового узла создаем объект вершины
 	x = new Node();
+	x->data = data;
 
 	// Если дерево имеет хотяб 1 вершину
 	if (parent) {
 		// Определяем с какой стороны вставить новый узел
-		if (data == parent->data)
+		if (data < parent->data)
 			parent->left = x;
 		else
 			parent->right = x;

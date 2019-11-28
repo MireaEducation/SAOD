@@ -8,6 +8,6 @@ void CreateTree(RedBlackTree* root, int n)
 		cout << "¬ведите значение дл€ " << i << " узла: ";
 		char value = ' ';
 		cin >> value;
-		//root->Insert(value, root->GetParent());
+		root->InsertNode(value);
 	}
 }

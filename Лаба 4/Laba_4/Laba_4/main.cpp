@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include "Operation.h"
 #include "RedBlackTree.h"
 
 using namespace std;
@@ -10,7 +11,8 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
-	RedBlackTree* rbTree;
+	RedBlackTree* rbTree = nullptr;
+	int n = 0;
 
 	while (answer != 0) {
 		system("cls");
@@ -37,6 +39,16 @@ int main()
 		{
 
 			case 0: {
+				system("pause");
+				break;
+			}
+			case 1: {
+				cout << "¬ведите кол-во узлов в дереве: ";
+				cin >> n;
+				if (rbTree != nullptr)
+					free(rbTree);
+				rbTree = new RedBlackTree();
+				CreateTree(rbTree, n);
 				system("pause");
 				break;
 			}
