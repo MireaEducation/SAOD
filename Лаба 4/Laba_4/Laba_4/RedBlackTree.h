@@ -15,5 +15,12 @@ public:
 		root->data;
 	}
 	~RedBlackTree();
+
+	/// <summary>
+	/// Добавляет в дерево элемент с указанным значением
+	/// </summary>
+	/// <param name="data">Значение добавляемого узла</param>
+	/// <returns></returns>
+	Node* InsertNode(char data);
 };
 

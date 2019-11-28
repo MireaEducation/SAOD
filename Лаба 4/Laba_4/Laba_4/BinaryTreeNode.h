@@ -39,7 +39,7 @@ typedef struct Node {
 	char data;
 
 	Node() {
-		this->color = NodeColor::Black;
+		this->color = NodeColor::Red;
 		this->left = 0;
 		this->parent = 0;
 		this->right = 0;
