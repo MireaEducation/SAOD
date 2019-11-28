@@ -4,11 +4,16 @@
 class RedBlackTree
 {
 private:
+	Node* root;
 public:
 	/// <summary>
 	/// Инициализирует пустой узел дерева
 	/// </summary>
-	RedBlackTree();
+	RedBlackTree(char data)
+	{
+		this->root = new BinaryTreeNode();
+		root->data;
+	}
 	~RedBlackTree();
 };
 

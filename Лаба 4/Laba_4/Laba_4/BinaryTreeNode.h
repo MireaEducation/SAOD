@@ -3,7 +3,7 @@
 /// <summary>
 /// Перечисление цвета вершин
 /// </summary>
-enum NodeColor
+enum class NodeColor
 {
 	Black,
 	Red
@@ -36,5 +36,13 @@ typedef struct Node {
 	/// <summary>
 	/// Информационная часть вершины parent
 	/// </summary>
-	char data;                  
+	char data;
+
+	Node() {
+		this->color = NodeColor::Black;
+		this->left = 0;
+		this->parent = 0;
+		this->right = 0;
+		this->data = ' ';
+	}
 } BinaryTreeNode;

@@ -2,12 +2,6 @@
 #include <windows.h>
 #include "RedBlackTree.h"
 
-/// <summary>
-/// Фиктивная вершина для балансировки в красно-черном дереве
-/// </summary>
-#define NIL sentinel
-BinaryTreeNode sentinel = { &NIL, &NIL, 0, NodeColor::Black, 0 };
-
 using namespace std;
 
 int main()
@@ -16,7 +10,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
-	RedBlackTree rbTree;
+	RedBlackTree* rbTree;
 
 	while (answer != 0) {
 		system("cls");
