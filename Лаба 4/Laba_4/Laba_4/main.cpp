@@ -49,6 +49,7 @@ int main()
 					free(rbTree);
 				rbTree = new RedBlackTree();
 				CreateTree(rbTree, n);
+				PrintTree(rbTree->GetRoot(), n);
 				system("pause");
 				break;
 			}

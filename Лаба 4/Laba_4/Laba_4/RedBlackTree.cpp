@@ -117,3 +117,8 @@ Node* RedBlackTree::InsertNode(char data)
 void RedBlackTree::RotateRight(Node* x)
 {
 }
+
+Node* RedBlackTree::GetRoot()
+{
+	return this->root;
+}

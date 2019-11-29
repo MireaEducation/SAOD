@@ -6,3 +6,5 @@
 using namespace std;
 
 void CreateTree(RedBlackTree* root, int n);
+
+void PrintTree(BinaryTreeNode* p, int level);

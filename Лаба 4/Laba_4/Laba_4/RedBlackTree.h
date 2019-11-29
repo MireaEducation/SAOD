@@ -31,5 +31,11 @@ public:
 	/// </summary>
 	/// <param name="x"></param>
 	void RotateRight(Node* x);
+
+	/// <summary>
+	/// Возращает указатель на родительский элемет дерева
+	/// </summary>
+	/// <returns></returns>
+	Node* GetRoot();
 };
 
