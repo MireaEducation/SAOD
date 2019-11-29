@@ -18,7 +18,7 @@ void PrintTree(BinaryTreeNode* p, int level)
 	{
 		PrintTree(p->left, level + 1);
 		for (size_t i = 0; i < level; i++) cout << "\t";
-		cout << p->data << endl;
+		cout << p->data <<"-"<<(p->color == NodeColor::Black ? "Black" : "Red")<< endl;
 		PrintTree(p->right, level + 1);
 	}
 }

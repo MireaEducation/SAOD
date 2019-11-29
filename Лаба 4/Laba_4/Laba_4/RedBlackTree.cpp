@@ -30,16 +30,16 @@ void RedBlackTree::BalanceInsert(Node* x)
 					x->parent->parent->color = NodeColor::Red;
 					x = x->parent->parent;
 				}
-				else {
-					if (x == x->parent->right) {
-						x = x->parent;
-						// Тут должен быть поворот дерева влево
-					}
 
-					x->parent->color = NodeColor::Black;
-					x->parent->parent->color = NodeColor::Red;
-					// Здесь должен быть поворт вправо
+			} else {
+				if (x == x->parent->right) {
+					x = x->parent;
+					this->RotateLeft(x);
 				}
+
+				x->parent->color = NodeColor::Black;
+				x->parent->parent->color = NodeColor::Red;
+				this->RotateRight(x->parent->parent);
 			}
 		}
 		else { // Иначе - отец == правый ребенок
@@ -55,18 +55,17 @@ void RedBlackTree::BalanceInsert(Node* x)
 					x->parent->parent->color = NodeColor::Red;
 					x = x->parent->parent;
 				}
-				else {
-					if (x == x->parent->left) {
-						x = x->parent;
-						//здесь должен быть поворот вправо
-					}
-
-					x->parent->color = NodeColor::Black;
-					x->parent->parent->color = NodeColor::Red;
-					// Здесь должен быть поворт влево
+				
+			}else {
+				if (x == x->parent->left) {
+					x = x->parent;
+					this->RotateRight(x);
 				}
-			}
 
+				x->parent->color = NodeColor::Black;
+				x->parent->parent->color = NodeColor::Red;
+				this->RotateLeft(x->parent->parent);
+			}
 		}
 	}
 
@@ -116,6 +115,46 @@ Node* RedBlackTree::InsertNode(char data)
 
 void RedBlackTree::RotateRight(Node* x)
 {
+	Node* y = x->left;
+
+	x->left = y->right;
+
+	if (y->right != 0) y->right->parent = x;
+
+	if (x->parent) {
+		if (x == x->parent->right)
+			x->parent->right = y;
+		else
+			x->parent->left = y;
+	}
+	else {
+		this->root = y;
+	}
+
+	y->right = x;
+	if (x != 0) x->parent = y;
+}
+
+void RedBlackTree::RotateLeft(Node* x)
+{
+	Node* y = x->right;
+
+	x->right = y->left;
+
+	if (y->left != 0) y->left->parent = x;
+
+	if (x->parent) {
+		if (x == x->parent->left)
+			x->parent->left = y;
+		else
+			x->parent->right = y;
+	}
+	else {
+		this->root = y;
+	}
+
+	y->left = x;
+	if (x != 0) x->parent = y;
 }
 
 Node* RedBlackTree::GetRoot()

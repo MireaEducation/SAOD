@@ -27,10 +27,16 @@ public:
 	Node* InsertNode(char data);
 
 	/// <summary>
-	/// Делае
+	/// Делает поворот дерева вправо
+	/// </summary>
+	/// <param name="x">Вершина относительно которой будет производится поворот</param>
+	void RotateRight(Node* x);
+
+	/// <summary>
+	/// Делает поворот дерева влево
 	/// </summary>
 	/// <param name="x"></param>
-	void RotateRight(Node* x);
+	void RotateLeft(Node* x);
 
 	/// <summary>
 	/// Возращает указатель на родительский элемет дерева
