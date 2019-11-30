@@ -20,3 +20,11 @@ int InOrderTravelRL(BinaryTreeNode* root, int sum);
 /// <param name="root">Корень дерева</param>
 /// <returns></returns>
 BinaryTreeNode* FindMax(BinaryTreeNode* root);
+
+/// <summary>
+/// Возвращает указатель на элемент с заданным data
+/// </summary>
+/// <param name="root">Указатель на корень дерева</param>
+/// <param name="data">Значение искомого узла дерева</param>
+/// <returns></returns>
+BinaryTreeNode* FindNode(BinaryTreeNode* root, char data);

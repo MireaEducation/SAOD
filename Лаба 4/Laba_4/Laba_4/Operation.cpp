@@ -45,3 +45,31 @@ BinaryTreeNode* FindMax(BinaryTreeNode* root)
 	}
 	return max;
 }
+
+/// <summary>
+/// Возвращает указатель на элемент с заданным data
+/// </summary>
+/// <param name="root">Указатель на корень дерева</param>
+/// <param name="data">Значение искомого узла дерева</param>
+/// <returns></returns>
+BinaryTreeNode* FindNode(BinaryTreeNode* root, char data)
+{
+	BinaryTreeNode* node = new Node(*root);
+
+	
+	if (node->data == data) {// Если узел найден - возвращаем его
+		return node;
+	}
+	else if(node->data <= data){//Если значение больше текущего корня - ищем нужный элемент справа
+		if (node->right)
+			return FindNode(node->right, data);
+		else 
+			return nullptr;
+	}
+	else {// Если значение меньше текущего корня - ищем нужный элемент слева
+		if (node->left)
+			return FindNode(node->left, data);
+		else 
+			return nullptr;
+	}
+}
