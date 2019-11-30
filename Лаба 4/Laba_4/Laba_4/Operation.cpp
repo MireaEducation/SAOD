@@ -14,7 +14,7 @@ void CreateTree(RedBlackTree* root, int n)
 
 void PrintTree(BinaryTreeNode* p, int level)
 {
-	if (p)
+	if (p && p->data != ' ')
 	{
 		PrintTree(p->right, level + 1);
 		for (size_t i = 0; i < level; i++) cout << "\t";

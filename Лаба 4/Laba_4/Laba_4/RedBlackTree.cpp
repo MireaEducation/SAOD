@@ -1,4 +1,11 @@
 #include "RedBlackTree.h"
+#define NIL sentinel
+Node* sentinel = new Node(NIL, NIL, 0, NodeColor::Black, ' ');
+
+RedBlackTree::RedBlackTree()
+{
+	this->root = NIL;
+}
 
 RedBlackTree::~RedBlackTree()
 {
@@ -6,70 +13,65 @@ RedBlackTree::~RedBlackTree()
 
 void RedBlackTree::BalanceInsert(Node* x)
 {
-	// Если х - корень
-	if (x == this->root)
-	{
-		x->color = NodeColor::Black;
-		return;
-	}
+	/*************************************
+		*  maintain Red-Black tree balance  *
+		*  after inserting node x           *
+		*************************************/
 
-	while (x->parent->color == NodeColor::Red)
-	{
-		// Если отец == левый ребенок
+		/* check Red-Black properties */
+	while (x != root && x->parent->color == NodeColor::Red) {
+		/* we have a violation */
 		if (x->parent == x->parent->parent->left) {
 			Node* y = x->parent->parent->right;
+			if (y->color == NodeColor::Red) {
 
-			// Если есть дядя
-			if (y)
-			{
-				// Если дядя красный
-				if (y->color == NodeColor::Red)
-				{
-					x->parent->color = NodeColor::Black;
-					y->color = NodeColor::Black;
-					x->parent->parent->color = NodeColor::Red;
-					x = x->parent->parent;
-				}
+				/* uncle is RED */
+				x->parent->color = NodeColor::Black;
+				y->color = NodeColor::Black;
+				x->parent->parent->color = NodeColor::Red;
+				x = x->parent->parent;
+			}
+			else {
 
-			} else {
+				/* uncle is BLACK */
 				if (x == x->parent->right) {
+					/* make x a left child */
 					x = x->parent;
-					this->RotateLeft(x);
+					RotateLeft(x);
 				}
 
+				/* recolor and rotate */
 				x->parent->color = NodeColor::Black;
 				x->parent->parent->color = NodeColor::Red;
-				this->RotateRight(x->parent->parent);
+				RotateRight(x->parent->parent);
 			}
 		}
-		else { // Иначе - отец == правый ребенок
-			Node* y = x->parent->parent->left;
+		else {
 
-			// Если есть дядя
-			if (y)
-			{
-				// Если дядя красный
-				if (y->color == NodeColor::Red) {
-					x->parent->color = NodeColor::Black;
-					y->color = NodeColor::Black;
-					x->parent->parent->color = NodeColor::Red;
-					x = x->parent->parent;
-				}
-				
-			}else {
+			/* mirror image of above code */
+			Node* y = x->parent->parent->left;
+			if (y->color == NodeColor::Red) {
+
+				/* uncle is RED */
+				x->parent->color = NodeColor::Black;
+				y->color = NodeColor::Black;
+				x->parent->parent->color = NodeColor::Red;
+				x = x->parent->parent;
+			}
+			else {
+
+				/* uncle is BLACK */
 				if (x == x->parent->left) {
 					x = x->parent;
-					this->RotateRight(x);
+					RotateRight(x);
 				}
-
 				x->parent->color = NodeColor::Black;
 				x->parent->parent->color = NodeColor::Red;
-				this->RotateLeft(x->parent->parent);
+				RotateLeft(x->parent->parent);
 			}
 		}
 	}
-
-	this->root->color = NodeColor::Black;
+	root->color = NodeColor::Black;
 }
 
 Node* RedBlackTree::InsertNode(char data)
@@ -81,7 +83,7 @@ Node* RedBlackTree::InsertNode(char data)
 
 	// Перебираем узлы дерева, вплоть до листьев
 	// или пока не встретим элемент с теми эе данными
-	while (current)
+	while (current != NIL)
 	{
 		if (data == current->data)
 			return current;
@@ -92,6 +94,10 @@ Node* RedBlackTree::InsertNode(char data)
 	// Для нового узла создаем объект вершины
 	x = new Node();
 	x->data = data;
+	x->parent = parent;
+	x->left = NIL;
+	x->right = NIL;
+	x->color = NodeColor::Red;
 
 	// Если дерево имеет хотяб 1 вершину
 	if (parent) {
@@ -119,8 +125,9 @@ void RedBlackTree::RotateRight(Node* x)
 
 	x->left = y->right;
 
-	if (y->right != 0) y->right->parent = x;
+	if (y->right != NIL) y->right->parent = x;
 
+	if (y != NIL) y->parent = x->parent;
 	if (x->parent) {
 		if (x == x->parent->right)
 			x->parent->right = y;
@@ -132,7 +139,7 @@ void RedBlackTree::RotateRight(Node* x)
 	}
 
 	y->right = x;
-	if (x != 0) x->parent = y;
+	if (x != NIL) x->parent = y;
 }
 
 void RedBlackTree::RotateLeft(Node* x)
@@ -140,9 +147,9 @@ void RedBlackTree::RotateLeft(Node* x)
 	Node* y = x->right;
 
 	x->right = y->left;
+	if (y->left != NIL) y->left->parent = x;
 
-	if (y->left != 0) y->left->parent = x;
-
+	if (y != NIL) y->parent = x->right;
 	if (x->parent) {
 		if (x == x->parent->left)
 			x->parent->left = y;
@@ -154,7 +161,7 @@ void RedBlackTree::RotateLeft(Node* x)
 	}
 
 	y->left = x;
-	if (x != 0) x->parent = y;
+	if (x != NIL) x->parent = y;
 }
 
 Node* RedBlackTree::GetRoot()

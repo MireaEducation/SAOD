@@ -9,7 +9,7 @@ public:
 	/// <summary>
 	/// Инициализирует пустой узел дерева
 	/// </summary>
-	RedBlackTree() {}
+	RedBlackTree();
 	~RedBlackTree();
 
 	/// <summary>

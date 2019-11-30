@@ -45,4 +45,17 @@ typedef struct Node {
 		this->right = 0;
 		this->data = ' ';
 	}
+
+	/// <summary>
+	/// Для генерации NIL
+	/// </summary>
+	/// <param name="isNil">Флаг, для геенерации NIL</param>
+	Node(struct Node* left, struct Node* right, struct Node* parent, NodeColor color, char data)
+	{
+		this->left = left;
+		this->right = right;
+		this->parent = parent;
+		this->color = color;
+		this->data = data;
+	}
 } BinaryTreeNode;
