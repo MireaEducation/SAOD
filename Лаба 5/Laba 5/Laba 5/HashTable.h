@@ -48,13 +48,19 @@ private:
 	int size;
 
 	/// <summary>
+	/// Максимальное число попыток при поиске нужного значения
+	/// </summary>
+	static int max_attempt;
+
+	/// <summary>
 	/// Хэщ-функция
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
+	/// <param name="attempt">Номер попытки</param>
 	/// <returns></returns>
-	int GetIndex(TKey key)
+	int GetIndex(TKey key, int attempt)
 	{
-		return (sizeof(key) % 12 - 'a') % size;
+		return (sizeof(key) % 12 - 'a' + attempt) % size;
 	}
 public:
 
@@ -74,14 +80,16 @@ public:
 	/// <param name="value">Значение соответствующее данному ключу</param>
 	void Add(TKey key, TValue value)
 	{
-		int index = this->GetIndex(key);
-
-		HashTableNodePair<TKey, TValue> node = this->mass[index];
-
-		if(! node) {
-			node = new HashTableNodePair<TKey, TValue>(key, value);
-			mass[index] = node;
-		}
+		int attempt = 0; // кол-во попыток добавить новый элемент
+		int index; // индекс для нового элемента
+		HashTableNodePair<TKey, TValue> node = 0; // Новый элемент на добавление в таблицу
+		do
+		{
+			index = this->GetIndex(key, attempt);
+			node = this->mass[index];
+			attempt++;
+		} while (node && attempt != size); // пока существует по заданному ключу элемент
+		mass[index] = node;
 	}
 };
 
