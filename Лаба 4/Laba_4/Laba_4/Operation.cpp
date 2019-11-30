@@ -12,6 +12,15 @@ void CreateTree(RedBlackTree* root, int n)
 	}
 }
 
+void CreateRandomTree(RedBlackTree* root, int n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		char value = rand()%100;
+		root->InsertNode(value);
+	}
+}
+
 void PrintTree(BinaryTreeNode* p, int level)
 {
 	if (p && p->data != ' ')

@@ -1,12 +1,15 @@
 #include <iostream>
 #include <windows.h>
 #include "Operation.h"
+#include "math.h"
+#include "time.h"
 
 
 using namespace std;
 
 int main()
 {
+	srand(time(NULL));
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
@@ -28,6 +31,7 @@ int main()
 		cout << "2) Определить сумму цифр, содержащихся в дереве, применив алгоритм симметричного обхода\n";
 		cout << "3) Найти первое вхождение заданного символа и вернуть указатель на узел \n";
 		cout << "4) Найти максимальное значение среди листьев дерева\n";
+		cout << "5) Создать новый список из n узлов\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -95,6 +99,17 @@ int main()
 				}else {
 					cout << "Для начало задайте не пустое дерево\n";
 				}
+				system("pause");
+				break;
+			}
+			case 5: {
+				cout << "Введите кол-во узлов в дереве: ";
+				cin >> n;
+				if (rbTree != nullptr)
+					free(rbTree);
+				rbTree = new RedBlackTree();
+				CreateRandomTree(rbTree, n);
+				PrintTree(rbTree->GetRoot(), n);
 				system("pause");
 				break;
 			}
