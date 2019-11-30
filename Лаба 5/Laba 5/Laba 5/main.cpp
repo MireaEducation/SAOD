@@ -1,7 +1,5 @@
-#include <iostream>
 #include <windows.h>
-	
-using namespace std;
+#include "HashTable.h"
 
 int main()
 {
@@ -9,6 +7,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
+	HashTable<int, char> *table = nullptr;
 
 	while (answer != 0) {
 		system("cls");
