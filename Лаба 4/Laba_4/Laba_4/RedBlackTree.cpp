@@ -19,7 +19,7 @@ void RedBlackTree::BalanceInsert(Node* x)
 		*************************************/
 
 		/* check Red-Black properties */
-	while (x != root && x->parent->color == NodeColor::Red) {
+	while (x != this->root && x->parent->color == NodeColor::Red) {
 		/* we have a violation */
 		if (x->parent == x->parent->parent->left) {
 			Node* y = x->parent->parent->right;
@@ -108,7 +108,7 @@ Node* RedBlackTree::InsertNode(char data)
 		else {
 			parent->right = x;
 		}
-		x->parent = parent;
+		//x->parent = parent;
 	}
 	else {
 		// Иначе делаем вершину главной
@@ -124,7 +124,6 @@ void RedBlackTree::RotateRight(Node* x)
 	Node* y = x->left;
 
 	x->left = y->right;
-
 	if (y->right != NIL) y->right->parent = x;
 
 	if (y != NIL) y->parent = x->parent;
@@ -149,7 +148,7 @@ void RedBlackTree::RotateLeft(Node* x)
 	x->right = y->left;
 	if (y->left != NIL) y->left->parent = x;
 
-	if (y != NIL) y->parent = x->right;
+	if (y != NIL) y->parent = x->parent;
 	if (x->parent) {
 		if (x == x->parent->left)
 			x->parent->left = y;
