@@ -25,6 +25,14 @@ public:
 		this->key = key;
 		this->value = value;
 	}
+
+	TValue GetValue() {
+		return value;
+	}
+
+	TKey GetKey() {
+		return key;
+	}
 };
 
 /// <summary>
@@ -46,11 +54,6 @@ private:
 	/// Размер хэш-таблицы
 	/// </summary>
 	int size;
-
-	/// <summary>
-	/// Максимальное число попыток при поиске нужного значения
-	/// </summary>
-	static int max_attempt;
 
 	/// <summary>
 	/// Хэщ-функция
@@ -90,6 +93,32 @@ public:
 			attempt++;
 		} while (node && attempt != size); // пока существует по заданному ключу элемент
 		mass[index] = node;
+	}
+
+	void Print()
+	{
+		for (size_t j = 0; j < 50; j++) cout << "_";
+		cout << endl;
+
+		cout << "|\Key\t|";
+		for (size_t i = 0; i < this->size; i++)
+		{
+			if(mass[i])
+				cout << "|\t" <<mass[i].GetKey()<< "\t|";
+			else
+				cout << "|\tNULL\t|";
+		}
+		cout << endl;
+
+		cout << "|\Value\t|";
+		for (size_t i = 0; i < this->size; i++)
+		{
+			if (mass[i])
+				cout << "|\t" << mass[i].GetValue() << "\t|";
+			else
+				cout << "|\tNULL\t|";
+		}
+		cout << endl;
 	}
 };
 
