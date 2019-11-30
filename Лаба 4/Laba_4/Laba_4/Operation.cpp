@@ -18,7 +18,21 @@ void PrintTree(BinaryTreeNode* p, int level)
 	{
 		PrintTree(p->right, level + 1);
 		for (size_t i = 0; i < level; i++) cout << "\t";
-		cout << p->data <<"-"<<(p->color == NodeColor::Black ? "Black" : "Red")<< endl;
+		cout << (int)p->data <<"-"<<(p->color == NodeColor::Black ? "Black" : "Red")<< endl;
 		PrintTree(p->left, level + 1);
 	}
+}
+
+int InOrderTravelRL(BinaryTreeNode* root, int sum)
+{
+	// Если данный узел не NIL
+	if (root && root->data != ' ')
+	{
+		sum = (int)root->data;
+	} else return 0;
+
+	sum += InOrderTravelRL(root->right, sum);
+	sum += InOrderTravelRL(root->left, sum);
+	
+	return sum;
 }

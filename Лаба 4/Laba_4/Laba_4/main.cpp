@@ -25,6 +25,8 @@ int main()
 		cout << "\t• Найти максимальное значение среди листьев дерева\n";
 		cout << "\nМеню\n";
 		cout << "1) Создать новый список из n узлов\n";
+		cout << "2) Определить сумму цифр, содержащихся в дереве, применив алгоритм симметричного обхода\n";
+		//cout << "3) Определить сумму цифр, содержащихся в дереве, применив алгоритм симметричного обхода\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -50,6 +52,12 @@ int main()
 				rbTree = new RedBlackTree();
 				CreateTree(rbTree, n);
 				PrintTree(rbTree->GetRoot(), n);
+				system("pause");
+				break;
+			}
+			case 2: {
+				PrintTree(rbTree->GetRoot(), n);
+				cout << "Сумма значений в узлав дерева: " << InOrderTravelRL(rbTree->GetRoot(), 0) << endl;
 				system("pause");
 				break;
 			}
