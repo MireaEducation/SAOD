@@ -58,4 +58,12 @@ typedef struct Node {
 		this->color = color;
 		this->data = data;
 	}
+
+	Node(const Node*& root) {
+		this->left = root->left;
+		this->right = root->right;
+		this->parent = root->parent;
+		this->color = root->color;
+		this->data = root->data;
+	}
 } BinaryTreeNode;

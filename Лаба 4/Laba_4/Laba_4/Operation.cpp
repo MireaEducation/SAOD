@@ -36,3 +36,12 @@ int InOrderTravelRL(BinaryTreeNode* root, int sum)
 	
 	return sum;
 }
+
+BinaryTreeNode* FindMax(BinaryTreeNode* root)
+{
+	Node* max = new Node(*root);
+	while (max && max->right && max->right->data != ' ') {
+		max = max->right;
+	}
+	return max;
+}

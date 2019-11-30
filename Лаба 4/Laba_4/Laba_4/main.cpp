@@ -26,7 +26,7 @@ int main()
 		cout << "\nМеню\n";
 		cout << "1) Создать новый список из n узлов\n";
 		cout << "2) Определить сумму цифр, содержащихся в дереве, применив алгоритм симметричного обхода\n";
-		//cout << "3) Определить сумму цифр, содержащихся в дереве, применив алгоритм симметричного обхода\n";
+		cout << "3) Найти первое вхождение заданного символа и вернуть указатель на узел \n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -56,8 +56,24 @@ int main()
 				break;
 			}
 			case 2: {
-				PrintTree(rbTree->GetRoot(), n);
-				cout << "Сумма значений в узлав дерева: " << InOrderTravelRL(rbTree->GetRoot(), 0) << endl;
+				if (rbTree)
+				{
+					PrintTree(rbTree->GetRoot(), n);
+					cout << "Сумма значений в узлав дерева: " << InOrderTravelRL(rbTree->GetRoot(), 0) << endl;
+				}
+				else {
+					cout << "Для начало задайте не пустое дерево\n";
+				}
+				system("pause");
+				break;
+			}
+			case 3: {
+				if (rbTree) {
+					BinaryTreeNode* max_node = FindMax(rbTree->GetRoot());
+					cout << "Максимальный элемент дерева имеет значение: " << max_node->data << " и численно равен: " << (int)max_node->data << endl;
+				}else {
+					cout << "Для начало задайте не пустое дерево\n";
+				}
 				system("pause");
 				break;
 			}
