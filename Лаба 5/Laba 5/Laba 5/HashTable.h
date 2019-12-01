@@ -142,6 +142,12 @@ public:
 		cout << endl;
 	}
 
+	/// <summary>
+	/// Удаляет элемент из таблицы с заданным ключом и значением
+	/// </summary>
+	/// <param name="key">Ключ элемента из хэш-таблицы</param>
+	/// <param name="value">Значение соответствующее данному ключу</param>
+	/// <returns></returns>
 	bool Remove(TKey key, TValue value) 
 	{
 		// Если в таблице есть элементы
