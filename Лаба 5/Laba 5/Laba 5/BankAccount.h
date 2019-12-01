@@ -31,5 +31,11 @@ typedef struct Node
 		cout << "Введите адрес проживания: ";
 		cin >> this->address;
 	}
+
+	Node(const Node& obj) {
+		this->account_number = obj.account_number;
+		this->address = obj.address;
+		this->FIO = obj.FIO;
+	}
 }BankAccount;
 

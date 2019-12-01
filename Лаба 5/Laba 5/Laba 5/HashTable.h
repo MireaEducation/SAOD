@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-using namespace std;
 
 /// <summary>
 /// Шаблонный класс для узлов Хэш-Таблицы
@@ -66,7 +64,7 @@ private:
 	/// <summary>
 	/// Массив узлов хэш-таблицы
 	/// </summary>
-	HashTableNodePair<TKey, TValue*> *mass;
+	HashTableNodePair<TKey, TValue> *mass;
 
 	/// <summary>
 	/// Размер хэш-таблицы
@@ -92,7 +90,12 @@ public:
 	HashTable(int size)
 	{
 		this->size = size;
-		mass = new HashTableNodePair<TKey, TValue*>[size];
+		mass = new HashTableNodePair<TKey, TValue>[size];
+	}
+
+	HashTableNodePair<TKey, TValue>* GetMass()
+	{
+		return this->mass;
 	}
 
 	/// <summary>
@@ -100,14 +103,14 @@ public:
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <param name="value">Значение соответствующее данному ключу</param>
-	void Add(TKey key, TValue *value)
+	void Add(TKey key, TValue value)
 	{
 		// Если указанного элемента нет в таблице
 		if (this->FindNode(key, value) == -1)
 		{
 			int attempt = 0; // кол-во попыток добавить новый элемент
 			int index; // индекс для нового элемента
-			HashTableNodePair<TKey, TValue*> *node = 0; // Новый элемент на добавление в таблицу
+			HashTableNodePair<TKey, TValue> *node = 0; // Новый элемент на добавление в таблицу
 			do
 			{
 				index = this->GetIndex(key, attempt);
@@ -116,7 +119,7 @@ public:
 			} while (node && node->GetIsVoid() == false && attempt != size); // пока существует по заданному ключу элемент
 		
 			if ( (node && node->GetIsVoid()) || !node) { // Если по заданному ключу - элемент удален
-				this->mass[index] = *(new HashTableNodePair<TKey, TValue*>(key, value));
+				this->mass[index] = HashTableNodePair<TKey, TValue>(key, value);
 			}
 			else {
 				throw new exception("Таблица заполнена");
@@ -125,32 +128,6 @@ public:
 		else {
 			throw new exception("Элемент с указанным ключем и значением уже существует");
 		}
-	}
-
-	void Print()
-	{
-		for (size_t j = 0; j < 50; j++) cout << "_";
-		cout << endl;
-
-		cout << "|\tKey\t|";
-		for (size_t i = 0; i < this->size; i++)
-		{
-			if(!mass[i].GetIsVoid())
-				cout << "|\t" <<mass[i].GetKey()<< "\t|";
-			else
-				cout << "|\tNULL\t|";
-		}
-		cout << endl;
-
-		cout << "|\tValue\t|";
-		for (size_t i = 0; i < this->size; i++)
-		{
-			if (!mass[i].GetIsVoid())
-				cout << "|\t" << mass[i].GetValue() << "\t|";
-			else
-				cout << "|\tNULL\t|";
-		}
-		cout << endl;
 	}
 
 	/// <summary>
@@ -184,11 +161,11 @@ public:
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <param name="value">Значение соответствующее данному ключу</param>
 	/// <returns></returns>
-	int FindNode(TKey key, TValue *value)
+	int FindNode(TKey key, TValue value)
 	{
 		int attempt = 0; // кол-во попыток поиска ключа
 		int index; // Индекс искомого элемента
-		HashTableNodePair<TKey, TValue*> *node = 0;
+		HashTableNodePair<TKey, TValue> *node = 0;
 		do
 		{
 			index = this->GetIndex(key, attempt);
@@ -205,4 +182,3 @@ public:
 		}
 	}
 };
-

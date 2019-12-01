@@ -33,8 +33,15 @@ int main()
 			int n = 0;
 			cin >> n;
 			table = new HashTable<int, BankAccount*>(n);
-			CreateTable(table, n);
-			table->Print();
+			BankAccount* account = nullptr;
+			for (size_t i = 0; i < n; i++)
+			{
+				account = new BankAccount();
+				table->Add(account->account_number, account);
+			}
+			cout << "Хэш-таблицу сформирована" << endl;
+			//CreateTable(table, n);
+			Print(table->GetMass(), n);
 			system("pause");
 			break;
 		}
