@@ -1,5 +1,18 @@
 #include "Operation.h"
 
+void PrintHeaderTable(string h1, string h2)
+{
+	cout << ".";
+	for (size_t i = 0; i < 40; i++) cout << "_";
+	cout << ".";
+
+	cout << endl << "|" << setw(20) << left << h1 << setw(20) << left << "|" + h2 << setw(20) << "|" << endl;
+
+	cout << ".";
+	for (size_t i = 0; i < 40; i++) cout << "_";
+	cout << "."<<endl;
+}
+
 void CreateTable(HashTable<int, BankAccount*> *table, int n)
 {
 	BankAccount* account = nullptr;
@@ -13,26 +26,17 @@ void CreateTable(HashTable<int, BankAccount*> *table, int n)
 
 void Print(HashTableNodePair<int, BankAccount*> *mass, int n)
 {
-	cout << "KEY# " << setw(40) << left << "VALUE" << endl;
+	PrintHeaderTable("KEY", "VALUE");
 
 	for (size_t i = 0; i < n; i++)
 	{
 		if (!mass[i].GetIsVoid())
-			cout << mass[i].GetKey() << setw(40) << left;
-		else
-			cout << "NULL" << setw(40) << left;
-	}
-	cout << endl;
-
-	for (size_t i = 0; i < n; i++)
-	{
-		if (!mass[i].GetIsVoid()) {
-			BankAccount* obj = mass[i].GetValue();
-			cout << obj->FIO.c_str() << setw(40) << left;
+		{
+			cout << "|" << setw(20) << left << mass[i].GetKey() << setw(20) << left << "|" + mass[i].GetValue()->FIO << setw(20) << "|" << endl;
+			cout << ".";  for (size_t i = 0; i < 40; i++) cout << "_"; cout << ".";
+			cout << endl;
 		}
 		else
-			cout << "NULL" << setw(40) << left;
+			cout << "NULL" << setw(20);
 	}
-	cout << endl;
-	
 }

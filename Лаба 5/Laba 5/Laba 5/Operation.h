@@ -6,6 +6,7 @@ using namespace std;
 #include "BankAccount.h"
 #include "HashTable.h"
 
+void PrintHeaderTable(string h1, string h2);
 
 void CreateTable(HashTable<int, BankAccount*> *table, int n);
 
