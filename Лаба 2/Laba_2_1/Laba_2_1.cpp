@@ -16,9 +16,10 @@ int main()
 	stack<Expression> expStack = stack<Expression>();
 
 	string exp = "";
-	try
-	{
+
 		while (answer1 != 0) {
+			try
+			{
 			system("cls");
 			cout << "Лабораторная работа №2 Бикеева А. И. Вариант 2\n\n";
 			cout << "Вычислить значение арифметического бесскобочного выражения, введенного в виде строки.Операнды операций – это \nцелые числа.Перед вычислением значения выражения следует проверить \nего на корректность записи операций и операндов. .\n";
@@ -62,7 +63,6 @@ int main()
 							{
 								cin >> exp;
 								stackDynamic.init(exp);
-
 								cout << "Математическое выражение спешно распарсено в стек" << endl;
 								system("pause");
 								break;
@@ -200,10 +200,11 @@ int main()
 				}
 			}
 		}
-	}
-	catch (const std::exception & ex)
-	{
-		cout << "Ошибка: " << ex.what() << endl;
+		catch (const std::exception & ex)
+		{
+			cout << "Ошибка: " << ex.what() << endl;
+			system("pause");
+		}
 	}
 
 	return 0;

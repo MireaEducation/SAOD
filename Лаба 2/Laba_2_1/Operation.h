@@ -32,3 +32,11 @@ void changeArgs(Expression& last);
 /// <param name="size_new">Новый размер массива</param>
 /// <returns></returns>
 Expression* updateSize(const Expression* exp, int size_old, int size_new);
+
+/// <summary>
+/// Возвращает true - если exp имеет корректную запись
+/// false - в ином случаи
+/// </summary>
+/// <param name="exp">Мат. выражение</param>
+/// <returns></returns>
+bool isCoorectExpression(const Expression& exp);

@@ -8,8 +8,6 @@ StackDynamic::StackDynamic()
 
 StackDynamic::~StackDynamic()
 {
-	if (mass != nullptr && this->size != 0)
-		free(mass);
 }
 
 void StackDynamic::init(string exp)
@@ -60,9 +58,11 @@ void StackDynamic::init(string exp)
 			this->push(secondExp);
 			obj = secondExp;
 		}
+		if(!isCoorectExpression(this->mass[0]))
+			throw  exception("Неверно задано мат. выражение\n");
 	}
 	else {
-		throw new exception("Не удалось выделить память \n");
+		throw  exception("Не удалось выделить память \n");
 	}
 }
 
@@ -75,7 +75,7 @@ void StackDynamic::push(Expression elem)
 		this->mass[size - 1] = elem;
 	}
 	else {
-		throw new exception("Не удалось выделить память \n");
+		throw  exception("Не удалось выделить память \n");
 	}
 }
 
