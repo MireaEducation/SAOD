@@ -83,6 +83,9 @@ int main()
 					BankAccount* account = nullptr;
 					account = new BankAccount();
 					table->Add(account->account_number, account);
+
+					Print(table->GetMass(), n);
+
 					cout << "Данные успешно добавлены" << endl;
 				}
 				else {
