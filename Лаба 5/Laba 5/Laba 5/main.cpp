@@ -30,58 +30,67 @@ int main()
 		}
 		system("cls");
 		cout << "Лабораторная работа №5 Бикеева А. И. Вариант 2\n\n";
-		switch (answer)
+		try
 		{
-		case 1: {
-			cout << "Укажите размер хэш-таблицы: ";
-			cin >> n;
-			table = new HashTable<int, BankAccount*>(n);
-			cout << "Таблица успешно создана\n";
-			system("pause");
-			break;
-		}
-		case 2: {
-			cout << "Введите номер карты клиента: ";
-			int num = 0;
-			cin >> num;
-			int i = table->FindNode(num);
-			if (i != -1) {
-				HashTableNodePair<int, BankAccount*> *mass = table->GetMass();
-				cout << "ФИО: " << mass[i].GetValue()->FIO << endl;
-				cout << "Адрес: " << mass[i].GetValue()->address << endl;
-			}
-			else {
-				cout << "Клиента с указанным номером - нет в таблице\n";
-			}
 
-			system("pause");
-			break;
-		}
-		case 3: {
-			Print(table->GetMass(), n);
-			system("pause");
-			break;
-		}
-		case 4: {
-			if (table->GetVoidCount())
+			switch (answer)
 			{
-				BankAccount* account = nullptr;
-				account = new BankAccount();
-				table->Add(account->account_number, account);
-				cout << "Данные успешно добавлены" << endl;
+			case 1: {
+				cout << "Укажите размер хэш-таблицы: ";
+				cin >> n;
+				table = new HashTable<int, BankAccount*>(n);
+				cout << "Таблица успешно создана\n";
+				system("pause");
+				break;
 			}
-			else {
-				cout << "Хэш-таблица полностью заполнена\nДля повтора требуется пересоздать её" << endl;
+			case 2: {
+				cout << "Введите номер карты клиента: ";
+				int num = 0;
+				cin >> num;
+				int i = table->FindNode(num);
+				if (i != -1) {
+					HashTableNodePair<int, BankAccount*>* mass = table->GetMass();
+					cout << "ФИО: " << mass[i].GetValue()->FIO << endl;
+					cout << "Адрес: " << mass[i].GetValue()->address << endl;
+				}
+				else {
+					cout << "Клиента с указанным номером - нет в таблице\n";
+				}
+
+				system("pause");
+				break;
 			}
-			system("pause");
-			break;
+			case 3: {
+				Print(table->GetMass(), n);
+				system("pause");
+				break;
+			}
+			case 4: {
+				if (table->GetVoidCount())
+				{
+					BankAccount* account = nullptr;
+					account = new BankAccount();
+					table->Add(account->account_number, account);
+					cout << "Данные успешно добавлены" << endl;
+				}
+				else {
+					cout << "Хэш-таблица полностью заполнена\nДля повтора требуется пересоздать её" << endl;
+				}
+				system("pause");
+				break;
+			}
+			case 0: {
+				system("pause");
+				break;
+			}
+			default:
+				break;
+			}
 		}
-		case 0: {
+		catch (const std::exception& exc)
+		{
+			cout << "ERROR: " << exc.what() << endl;
 			system("pause");
-			break;
-		}
-		default:
-			break;
 		}
 	}
 	return 0;

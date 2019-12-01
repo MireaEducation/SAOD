@@ -138,11 +138,11 @@ public:
 				this->count_not_void--;
 			}
 			else {
-				throw new exception("Таблица заполнена");
+				throw exception("Таблица заполнена");
 			}
 		}
 		else {
-			throw new exception("Элемент с указанным ключем и значением уже существует");
+			throw exception("Элемент с указанным ключем и значением уже существует");
 		}
 	}
 
