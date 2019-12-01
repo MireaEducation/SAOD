@@ -125,10 +125,12 @@
   <ItemGroup>
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Operation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BankAccount.h" />
     <ClInclude Include="HashTable.h" />
+    <ClInclude Include="Operation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

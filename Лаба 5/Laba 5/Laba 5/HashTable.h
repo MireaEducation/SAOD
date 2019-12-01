@@ -15,6 +15,10 @@ private:
 	TValue value;
 	bool isVoid; // Указывает - удален ли элемент
 public:
+	HashTableNodePair()
+	{
+		this->isVoid = true;
+	}
 
 	/// <summary>
 	/// Инициализирует новый элемент в хэш-таблице
@@ -34,6 +38,10 @@ public:
 
 	TKey GetKey() {
 		return key;
+	}
+
+	bool GetIsVoid() {
+		return this->isVoid;
 	}
 
 	void SetValue(TValue value) {
@@ -58,7 +66,7 @@ private:
 	/// <summary>
 	/// Массив узлов хэш-таблицы
 	/// </summary>
-	HashTableNodePair<TKey, TValue> *mass;
+	HashTableNodePair<TKey, TValue*> *mass;
 
 	/// <summary>
 	/// Размер хэш-таблицы
@@ -73,7 +81,7 @@ private:
 	/// <returns></returns>
 	int GetIndex(TKey key, int attempt)
 	{
-		return (sizeof(key) % 12 - 'a' + attempt) % size;
+		return (sizeof(key) % 12 + attempt) % size;
 	}
 public:
 
@@ -83,7 +91,8 @@ public:
 	/// <param name="size">Размер хэш-таблицы</param>
 	HashTable(int size)
 	{
-		mass = new HashTableNodePair<TKey, TValue>[size];
+		this->size = size;
+		mass = new HashTableNodePair<TKey, TValue*>[size];
 	}
 
 	/// <summary>
@@ -91,28 +100,23 @@ public:
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <param name="value">Значение соответствующее данному ключу</param>
-	void Add(TKey key, TValue value)
+	void Add(TKey key, TValue *value)
 	{
 		// Если указанного элемента нет в таблице
 		if (this->FindNode(key, value) == -1)
 		{
 			int attempt = 0; // кол-во попыток добавить новый элемент
 			int index; // индекс для нового элемента
-			HashTableNodePair<TKey, TValue> node = 0; // Новый элемент на добавление в таблицу
+			HashTableNodePair<TKey, TValue*> *node = 0; // Новый элемент на добавление в таблицу
 			do
 			{
 				index = this->GetIndex(key, attempt);
-				node = this->mass[index];
+				node = &this->mass[index];
 				attempt++;
-			} while (node && node.isVoid == false && attempt != size); // пока существует по заданному ключу элемент
-
+			} while (node && node->GetIsVoid() == false && attempt != size); // пока существует по заданному ключу элемент
 		
-			if (node && node.isVoid == true) { // Если по заданному ключу - элемент удален
-				this->mass[index].SetValue(value);
-				this->mass[index].SetIsVoid(false);
-			}
-			else if(!node){
-				this->mass[index] = new HashTableNodePair<TKey, TValue>(key, value);
+			if ( (node && node->GetIsVoid()) || !node) { // Если по заданному ключу - элемент удален
+				this->mass[index] = *(new HashTableNodePair<TKey, TValue*>(key, value));
 			}
 			else {
 				throw new exception("Таблица заполнена");
@@ -131,7 +135,7 @@ public:
 		cout << "|\tKey\t|";
 		for (size_t i = 0; i < this->size; i++)
 		{
-			if(mass[i])
+			if(!mass[i].GetIsVoid())
 				cout << "|\t" <<mass[i].GetKey()<< "\t|";
 			else
 				cout << "|\tNULL\t|";
@@ -141,7 +145,7 @@ public:
 		cout << "|\tValue\t|";
 		for (size_t i = 0; i < this->size; i++)
 		{
-			if (mass[i])
+			if (!mass[i].GetIsVoid())
 				cout << "|\t" << mass[i].GetValue() << "\t|";
 			else
 				cout << "|\tNULL\t|";
@@ -180,20 +184,20 @@ public:
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <param name="value">Значение соответствующее данному ключу</param>
 	/// <returns></returns>
-	int FindNode(TKey key, TValue value)
+	int FindNode(TKey key, TValue *value)
 	{
 		int attempt = 0; // кол-во попыток поиска ключа
 		int index; // Индекс искомого элемента
-		HashTableNodePair<TKey, TValue> node = 0;
+		HashTableNodePair<TKey, TValue*> *node = 0;
 		do
 		{
 			index = this->GetIndex(key, attempt);
-			node = this->mass[index];
+			node = &this->mass[index];
 			attempt++;
-		} while (node && (node.isVoid == true || node.GetValue != value) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
+		} while (node && (node->GetIsVoid() == true || node->GetValue() != value) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
 
 		// Если нашелся элемент с заданным ключем и значением в таблице
-		if (node && node.isVoid == true && node.GetValue == value) {
+		if (node && node->GetIsVoid() == true && node->GetValue() == value) {
 			return index;
 		}
 		else {

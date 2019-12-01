@@ -19,5 +19,17 @@ typedef struct Node
 	/// Адрес проживания клиента
 	/// </summary>
 	string address;
+
+	Node()
+	{
+		cout << "Введите номер счета в банке: ";
+		cin >> this->account_number;
+
+		cout << "Введите ФИО: ";
+		cin >> this->FIO;
+
+		cout << "Введите адрес проживания: ";
+		cin >> this->address;
+	}
 }BankAccount;
 
