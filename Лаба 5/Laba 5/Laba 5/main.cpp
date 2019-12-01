@@ -16,9 +16,10 @@ int main()
 		cout << "Тема: Хеширование для организации быстрого поиска данных\n";
 		cout << "Цель: Получить навыки по разработке хеш таблиц\n";
 		cout << "\nМеню\n";
-		cout << "1) Сформировать хэш-таблицу из n элементов\n";
+		cout << "1) Сформировать/пересоздать хэш-таблицу из n элементов\n";
 		cout << "2) Вывести данные клиента по номеру карты\n";
 		cout << "3) Вывести хэш-таблицу\n";
+		cout << "4) Добавить инф. о новом клиенте хэш-таблицу\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -35,8 +36,7 @@ int main()
 			cout << "Укажите размер хэш-таблицы: ";
 			cin >> n;
 			table = new HashTable<int, BankAccount*>(n);
-			CreateTable(table, n);
-			Print(table->GetMass(), n);
+			cout << "Таблица успешно создана\n";
 			system("pause");
 			break;
 		}
@@ -59,6 +59,20 @@ int main()
 		}
 		case 3: {
 			Print(table->GetMass(), n);
+			system("pause");
+			break;
+		}
+		case 4: {
+			if (table->GetVoidCount())
+			{
+				BankAccount* account = nullptr;
+				account = new BankAccount();
+				table->Add(account->account_number, account);
+				cout << "Данные успешно добавлены" << endl;
+			}
+			else {
+				cout << "Хэш-таблица полностью заполнена\nДля повтора требуется пересоздать её" << endl;
+			}
 			system("pause");
 			break;
 		}

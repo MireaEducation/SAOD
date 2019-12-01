@@ -36,7 +36,10 @@ void Print(HashTableNodePair<int, BankAccount*> *mass, int n)
 			cout << ".";  for (size_t i = 0; i < 40; i++) cout << "_"; cout << ".";
 			cout << endl;
 		}
-		else
-			cout << "NULL" << setw(20);
+		else {
+			cout << "|" << setw(20) << left << "NULL" << setw(20) << left << "|NULL" << setw(20) << "|" << endl;
+			cout << ".";  for (size_t i = 0; i < 40; i++) cout << "_"; cout << ".";
+			cout << endl;
+		}
 	}
 }

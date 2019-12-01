@@ -72,6 +72,11 @@ private:
 	int size;
 
 	/// <summary>
+	/// Кол-во непустых клеток в таблице
+	/// </summary>
+	int count_not_void;
+
+	/// <summary>
 	/// Хэщ-функция
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
@@ -90,12 +95,22 @@ public:
 	HashTable(int size)
 	{
 		this->size = size;
+		this->count_not_void = size;
 		mass = new HashTableNodePair<TKey, TValue>[size];
 	}
 
 	HashTableNodePair<TKey, TValue>* GetMass()
 	{
 		return this->mass;
+	}
+
+	/// <summary>
+	/// Возвращает кол-во пустых клеток в хэш-таблицы
+	/// </summary>
+	/// <returns></returns>
+	int GetVoidCount() 
+	{
+		return this->count_not_void;
 	}
 
 	/// <summary>
@@ -120,6 +135,7 @@ public:
 		
 			if ( (node && node->GetIsVoid()) || !node) { // Если по заданному ключу - элемент удален
 				this->mass[index] = HashTableNodePair<TKey, TValue>(key, value);
+				this->count_not_void--;
 			}
 			else {
 				throw new exception("Таблица заполнена");
