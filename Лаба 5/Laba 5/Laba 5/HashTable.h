@@ -13,6 +13,7 @@ class HashTableNodePair
 private:
 	TKey key;
 	TValue value;
+	bool isVoid; // Указывает - удален ли элемент
 public:
 
 	/// <summary>
@@ -24,6 +25,7 @@ public:
 	{
 		this->key = key;
 		this->value = value;
+		this->isVoid = false;
 	}
 
 	TValue GetValue() {
@@ -32,6 +34,14 @@ public:
 
 	TKey GetKey() {
 		return key;
+	}
+
+	void SetValue(TValue value) {
+		this->value = value;
+	}
+
+	void SetIsVoid(bool value) {
+		this->isVoid = value;
 	}
 };
 
@@ -91,8 +101,19 @@ public:
 			index = this->GetIndex(key, attempt);
 			node = this->mass[index];
 			attempt++;
-		} while (node && attempt != size); // пока существует по заданному ключу элемент
-		mass[index] = node;
+		} while (node && node.isVoid == false && attempt != size); // пока существует по заданному ключу элемент
+
+		
+		if (node && node.isVoid == true) { // Если по заданному ключу - элемент удален
+			this->mass[index].SetValue(value);
+			this->mass[index].SetIsVoid(false);
+		}
+		else if(!node){
+			this->mass[index] = new HashTableNodePair<TKey, TValue>(key, value);
+		}
+		else {
+			throw new exception("Таблица заполнена");
+		}
 	}
 
 	void Print()
@@ -100,7 +121,7 @@ public:
 		for (size_t j = 0; j < 50; j++) cout << "_";
 		cout << endl;
 
-		cout << "|\Key\t|";
+		cout << "|\tKey\t|";
 		for (size_t i = 0; i < this->size; i++)
 		{
 			if(mass[i])
@@ -110,7 +131,7 @@ public:
 		}
 		cout << endl;
 
-		cout << "|\Value\t|";
+		cout << "|\tValue\t|";
 		for (size_t i = 0; i < this->size; i++)
 		{
 			if (mass[i])
@@ -119,6 +140,28 @@ public:
 				cout << "|\tNULL\t|";
 		}
 		cout << endl;
+	}
+
+	bool Remove(TKey key, TValue value) 
+	{
+		// Если в таблице есть элементы
+		if (size)
+		{
+			int attempt = 0; // кол-во попыток поиска ключа
+			int index; // Индекс искомого элемента
+			HashTableNodePair<TKey, TValue> node = 0; // Новый элемент на добавление в таблицу
+			do
+			{
+				index = this->GetIndex(key, attempt);
+				node = this->mass[index];
+				attempt++;
+			} while (node && (node.isVoid == true || node.GetValue != value) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
+			
+			// Еслми нашелся элемент с заданным ключем и значением в таблице
+			if (node && node.isVoid == true && node.GetValue == value) {
+				this->mass[index].SetIsVoid(true); // Помечаем его удаленным
+			}
+		}
 	}
 };
 
