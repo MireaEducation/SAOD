@@ -174,14 +174,15 @@ public:
 			if (typeid(TValue) == typeid(BankAccount*))
 			{
 				flag = node && !node->GetIsVoid() ? (node->GetValue()->account_number == key ? true : false) : false;
+				if (flag) break;
 			}
 			else {
 				flag = true;
 			}
-		} while (node && (node->GetIsVoid() || flag) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
+		} while (node && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
 
 		// Если нашелся элемент с заданным ключем и значением в таблице
-		if (node && !node->GetIsVoid() && flag) {
+		if (node  && flag) {
 			return index;
 		}
 		else {

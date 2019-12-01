@@ -7,6 +7,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
+	int n = 0;
 	HashTable<int, BankAccount*> *table = nullptr;
 
 	while (answer != 0) {
@@ -16,7 +17,8 @@ int main()
 		cout << "Цель: Получить навыки по разработке хеш таблиц\n";
 		cout << "\nМеню\n";
 		cout << "1) Сформировать хэш-таблицу из n элементов\n";
-		cout << "2) Добавить новый элемент в хэш-таблицу\n";
+		cout << "2) Вывести данные клиента по номеру карты\n";
+		cout << "3) Вывести хэш-таблицу\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -31,7 +33,6 @@ int main()
 		{
 		case 1: {
 			cout << "Укажите размер хэш-таблицы: ";
-			int n = 0;
 			cin >> n;
 			table = new HashTable<int, BankAccount*>(n);
 			CreateTable(table, n);
@@ -44,6 +45,20 @@ int main()
 			int num = 0;
 			cin >> num;
 			int i = table->FindNode(num);
+			if (i != -1) {
+				HashTableNodePair<int, BankAccount*> *mass = table->GetMass();
+				cout << "ФИО: " << mass[i].GetValue()->FIO << endl;
+				cout << "Адрес: " << mass[i].GetValue()->address << endl;
+			}
+			else {
+				cout << "Клиента с указанным номером - нет в таблице\n";
+			}
+
+			system("pause");
+			break;
+		}
+		case 3: {
+			Print(table->GetMass(), n);
 			system("pause");
 			break;
 		}
