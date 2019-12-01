@@ -93,26 +93,33 @@ public:
 	/// <param name="value">Значение соответствующее данному ключу</param>
 	void Add(TKey key, TValue value)
 	{
-		int attempt = 0; // кол-во попыток добавить новый элемент
-		int index; // индекс для нового элемента
-		HashTableNodePair<TKey, TValue> node = 0; // Новый элемент на добавление в таблицу
-		do
+		// Если указанного элемента нет в таблице
+		if (this->FindNode(key, value) == -1)
 		{
-			index = this->GetIndex(key, attempt);
-			node = this->mass[index];
-			attempt++;
-		} while (node && node.isVoid == false && attempt != size); // пока существует по заданному ключу элемент
+			int attempt = 0; // кол-во попыток добавить новый элемент
+			int index; // индекс для нового элемента
+			HashTableNodePair<TKey, TValue> node = 0; // Новый элемент на добавление в таблицу
+			do
+			{
+				index = this->GetIndex(key, attempt);
+				node = this->mass[index];
+				attempt++;
+			} while (node && node.isVoid == false && attempt != size); // пока существует по заданному ключу элемент
 
 		
-		if (node && node.isVoid == true) { // Если по заданному ключу - элемент удален
-			this->mass[index].SetValue(value);
-			this->mass[index].SetIsVoid(false);
-		}
-		else if(!node){
-			this->mass[index] = new HashTableNodePair<TKey, TValue>(key, value);
+			if (node && node.isVoid == true) { // Если по заданному ключу - элемент удален
+				this->mass[index].SetValue(value);
+				this->mass[index].SetIsVoid(false);
+			}
+			else if(!node){
+				this->mass[index] = new HashTableNodePair<TKey, TValue>(key, value);
+			}
+			else {
+				throw new exception("Таблица заполнена");
+			}
 		}
 		else {
-			throw new exception("Таблица заполнена");
+			throw new exception("Элемент с указанным ключем и значением уже существует");
 		}
 	}
 
@@ -153,20 +160,44 @@ public:
 		// Если в таблице есть элементы
 		if (size)
 		{
-			int attempt = 0; // кол-во попыток поиска ключа
-			int index; // Индекс искомого элемента
-			HashTableNodePair<TKey, TValue> node = 0; // Новый элемент на добавление в таблицу
-			do
+			int index = this->FindNode(key, value); 
+
+			// Если нашелся элемент с заданным ключем и значением в таблице
+			if (index != -1)
 			{
-				index = this->GetIndex(key, attempt);
-				node = this->mass[index];
-				attempt++;
-			} while (node && (node.isVoid == true || node.GetValue != value) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
-			
-			// Еслми нашелся элемент с заданным ключем и значением в таблице
-			if (node && node.isVoid == true && node.GetValue == value) {
 				this->mass[index].SetIsVoid(true); // Помечаем его удаленным
 			}
+			else {
+				throw new exception("Элемента с указанным ключем и значением - нет в таблице");
+			}
+		}
+	}
+
+	/// <summary>
+	/// Возвращает индекс элемента с заданным ключем и значением в массиве хэш-таблицы
+	/// или -1 в случаи если такой элемент не нашелся
+	/// </summary>
+	/// <param name="key">Ключ элемента из хэш-таблицы</param>
+	/// <param name="value">Значение соответствующее данному ключу</param>
+	/// <returns></returns>
+	int FindNode(TKey key, TValue value)
+	{
+		int attempt = 0; // кол-во попыток поиска ключа
+		int index; // Индекс искомого элемента
+		HashTableNodePair<TKey, TValue> node = 0;
+		do
+		{
+			index = this->GetIndex(key, attempt);
+			node = this->mass[index];
+			attempt++;
+		} while (node && (node.isVoid == true || node.GetValue != value) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
+
+		// Если нашелся элемент с заданным ключем и значением в таблице
+		if (node && node.isVoid == true && node.GetValue == value) {
+			return index;
+		}
+		else {
+			return -1;
 		}
 	}
 };
