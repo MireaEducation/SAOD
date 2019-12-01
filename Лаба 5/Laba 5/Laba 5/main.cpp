@@ -1,5 +1,6 @@
 #include <windows.h>
 #include "HashTable.h"
+#include "BankAccount.h"
 
 int main()
 {
@@ -7,7 +8,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
-	HashTable<int, char> *table = nullptr;
+	HashTable<int, BankAccount> *table = nullptr;
 
 	while (answer != 0) {
 		system("cls");
