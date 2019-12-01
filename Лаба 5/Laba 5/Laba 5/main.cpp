@@ -20,6 +20,7 @@ int main()
 		cout << "2) Вывести данные клиента по номеру карты\n";
 		cout << "3) Вывести хэш-таблицу\n";
 		cout << "4) Добавить инф. о новом клиенте хэш-таблицу\n";
+		cout << "5) Удалить инф. о клиенте с указанным номером карты\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -44,29 +45,40 @@ int main()
 				break;
 			}
 			case 2: {
-				cout << "Введите номер карты клиента: ";
-				int num = 0;
-				cin >> num;
-				int i = table->FindNode(num);
-				if (i != -1) {
-					HashTableNodePair<int, BankAccount*>* mass = table->GetMass();
-					cout << "ФИО: " << mass[i].GetValue()->FIO << endl;
-					cout << "Адрес: " << mass[i].GetValue()->address << endl;
+				if (table)
+				{
+					cout << "Введите номер карты клиента: ";
+					int num = 0;
+					cin >> num;
+					int i = table->FindNode(num);
+					if (i != -1) {
+						HashTableNodePair<int, BankAccount*>* mass = table->GetMass();
+						cout << "ФИО: " << mass[i].GetValue()->FIO << endl;
+						cout << "Адрес: " << mass[i].GetValue()->address << endl;
+					}
+					else {
+						cout << "Клиента с указанным номером - нет в таблице\n";
+					}
 				}
 				else {
-					cout << "Клиента с указанным номером - нет в таблице\n";
+					cout << "Хэш-таблица пустая" << endl;
 				}
-
 				system("pause");
 				break;
 			}
 			case 3: {
-				Print(table->GetMass(), n);
+				if (table)
+				{
+					Print(table->GetMass(), n);
+				}
+				else {
+					cout << "Хэш-таблица пустая" << endl;
+				}
 				system("pause");
 				break;
 			}
 			case 4: {
-				if (table->GetVoidCount())
+				if (table && table->GetVoidCount())
 				{
 					BankAccount* account = nullptr;
 					account = new BankAccount();
@@ -75,6 +87,22 @@ int main()
 				}
 				else {
 					cout << "Хэш-таблица полностью заполнена\nДля повтора требуется пересоздать её" << endl;
+				}
+				system("pause");
+				break;
+			}
+			case 5: {
+				if (table && table->GetVoidCount() != n)
+				{
+					cout << "Введите номер карты клиента: ";
+					int num = 0;
+					cin >> num;
+					if (table->Remove(num))
+						cout << "Информация о клиенте успешно удалена" << endl;
+					else
+						cout << "Данного клиента нет в хэш-таблице" << endl;
+				} else {
+					cout << "Хэш-таблица пустая" << endl;
 				}
 				system("pause");
 				break;

@@ -150,14 +150,13 @@ public:
 	/// Удаляет элемент из таблицы с заданным ключом и значением
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
-	/// <param name="value">Значение соответствующее данному ключу</param>
 	/// <returns></returns>
-	bool Remove(TKey key, TValue value) 
+	bool Remove(TKey key) 
 	{
 		// Если в таблице есть элементы
 		if (size)
 		{
-			int index = this->FindNode(key, value); 
+			int index = this->FindNode(key); 
 
 			// Если нашелся элемент с заданным ключем и значением в таблице
 			if (index != -1)
@@ -165,7 +164,7 @@ public:
 				this->mass[index].SetIsVoid(true); // Помечаем его удаленным
 			}
 			else {
-				throw new exception("Элемента с указанным ключем и значением - нет в таблице");
+				throw exception("Элемента с указанным ключем и значением - нет в таблице");
 			}
 		}
 	}
