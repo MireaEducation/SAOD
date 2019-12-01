@@ -106,7 +106,7 @@ public:
 	void Add(TKey key, TValue value)
 	{
 		// Если указанного элемента нет в таблице
-		if (this->FindNode(key, value) == -1)
+		if (this->FindNode(key) == -1)
 		{
 			int attempt = 0; // кол-во попыток добавить новый элемент
 			int index; // индекс для нового элемента
@@ -159,22 +159,29 @@ public:
 	/// или -1 в случаи если такой элемент не нашелся
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
-	/// <param name="value">Значение соответствующее данному ключу</param>
 	/// <returns></returns>
-	int FindNode(TKey key, TValue value)
+	int FindNode(TKey key)
 	{
 		int attempt = 0; // кол-во попыток поиска ключа
 		int index; // Индекс искомого элемента
+		bool flag = false; // Флаг указывающий, что ключ подошел
 		HashTableNodePair<TKey, TValue> *node = 0;
 		do
 		{
 			index = this->GetIndex(key, attempt);
 			node = &this->mass[index];
 			attempt++;
-		} while (node && (node->GetIsVoid() == true || node->GetValue() != value) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
+			if (typeid(TValue) == typeid(BankAccount*))
+			{
+				flag = node && !node->GetIsVoid() ? (node->GetValue()->account_number == key ? true : false) : false;
+			}
+			else {
+				flag = true;
+			}
+		} while (node && (node->GetIsVoid() || flag) && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
 
 		// Если нашелся элемент с заданным ключем и значением в таблице
-		if (node && node->GetIsVoid() == true && node->GetValue() == value) {
+		if (node && !node->GetIsVoid() && flag) {
 			return index;
 		}
 		else {

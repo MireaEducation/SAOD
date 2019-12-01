@@ -16,6 +16,7 @@ int main()
 		cout << "Цель: Получить навыки по разработке хеш таблиц\n";
 		cout << "\nМеню\n";
 		cout << "1) Сформировать хэш-таблицу из n элементов\n";
+		cout << "2) Добавить новый элемент в хэш-таблицу\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -35,6 +36,14 @@ int main()
 			table = new HashTable<int, BankAccount*>(n);
 			CreateTable(table, n);
 			Print(table->GetMass(), n);
+			system("pause");
+			break;
+		}
+		case 2: {
+			cout << "Введите номер карты клиента: ";
+			int num = 0;
+			cin >> num;
+			int i = table->FindNode(num);
 			system("pause");
 			break;
 		}
