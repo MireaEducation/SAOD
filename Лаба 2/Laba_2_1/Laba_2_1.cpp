@@ -62,8 +62,13 @@ int main()
 							case 1:
 							{
 								cin >> exp;
-								stackDynamic.init(exp);
-								cout << "Математическое выражение спешно распарсено в стек" << endl;
+								if (isCoorectExpression(exp)) {
+									stackDynamic.init(exp);
+									cout << "Математическое выражение спешно распарсено в стек" << endl;
+								}
+								else {
+									cout << "Не валидное мат. выражение" << endl;
+								}
 								system("pause");
 								break;
 							}
@@ -114,9 +119,14 @@ int main()
 						switch (answer2) {
 							case 1:{
 								cin >> exp;
-								stackLink = new LinkedStack(Expression(exp));//stackLink->init(exp);
+								if (isCoorectExpression(exp)) {
+									stackLink = new LinkedStack(Expression(exp));//stackLink->init(exp);
 
-								cout << "Математическое выражение спешно распарсено в стек" << endl;
+									cout << "Математическое выражение спешно распарсено в стек" << endl;
+								}
+								else {
+									cout << "Не валидное мат. выражение" << endl;
+								}
 								system("pause");
 								break;
 							}
@@ -165,10 +175,14 @@ int main()
 						switch (answer2) {
 						case 1: {
 							cin >> exp;
-							hellper.init(expStack, Expression(exp), exp);
+							if (isCoorectExpression(exp)) {
+								hellper.init(expStack, Expression(exp), exp);
 
 
-							cout << "Математическое выражение спешно распарсено в стек" << endl;
+								cout << "Математическое выражение спешно распарсено в стек" << endl;
+							}else {
+								cout << "Не валидное мат. выражение" << endl;
+							}
 							system("pause");
 							break;
 						}

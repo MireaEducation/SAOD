@@ -58,8 +58,6 @@ void StackDynamic::init(string exp)
 			this->push(secondExp);
 			obj = secondExp;
 		}
-		if(!isCoorectExpression(this->mass[0]))
-			throw  exception("Неверно задано мат. выражение\n");
 	}
 	else {
 		throw  exception("Не удалось выделить память \n");

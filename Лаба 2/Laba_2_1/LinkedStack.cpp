@@ -50,7 +50,7 @@ LinkedStack::LinkedStack(Expression elem)
 		}
 	}
 	else {
-		throw new exception("Не удалось выделить память \n");
+		throw  exception("Не удалось выделить память \n");
 	}
 }
 

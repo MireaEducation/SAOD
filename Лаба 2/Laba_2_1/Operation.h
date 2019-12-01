@@ -39,4 +39,4 @@ Expression* updateSize(const Expression* exp, int size_old, int size_new);
 /// </summary>
 /// <param name="exp">Мат. выражение</param>
 /// <returns></returns>
-bool isCoorectExpression(const Expression& exp);
+bool isCoorectExpression(string exp);

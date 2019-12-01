@@ -1,4 +1,5 @@
 #include "Operation.h"
+#include <regex>
 
 bool isExpression(string exp)
 {
@@ -65,30 +66,8 @@ Expression* updateSize(const Expression* exp, int size_old, int size_new)
 	return updateMass;
 }
 
-bool isCoorectExpression(const Expression& exp)
+bool isCoorectExpression(string exp)
 {
-	Expression copy = Expression(exp);
-
-	int countOper = 0, countArgs = 0;
-	int i = -1;
-
-	// Если первй аргумент не содержит символ операции
-	while (copy.getFirstArg() != "" && copy.getCharOperation(copy.getFirstArg(), i) == ' ' && i == -1)
-	{
-		countOper++;
-		countArgs++;
-		if (copy.getLastArg() != "" && copy.getCharOperation(copy.getLastArg(), i) == ' ' && i == -1)
-		{
-			countArgs++;
-			copy = Expression(copy.getLastArg());
-		}
-		else {
-			break;
-		}
-	}
-
-	if (countArgs - 1 == countOper)
-		return true;
-	else
-		return false;
+	std::regex rx("^\\d+(?:[\+\*\-\/]?\\d+)+$");
+	return regex_match(exp.begin(), exp.end(), rx);
 }
