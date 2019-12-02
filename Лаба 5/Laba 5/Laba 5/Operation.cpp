@@ -1,4 +1,5 @@
 #include "Operation.h"
+#include <string>
 
 void PrintHeaderTable(string h1, string h2, string h3)
 {
@@ -37,7 +38,7 @@ void Print(HashTableNodePair<int, BankAccount*> *mass, int n)
 		{
 			cout << endl << "|" << setw(20) << left
 				<< i << setw(20) << left
-				<< "|" + mass[i].GetKey() << setw(20)
+				<< "|" + to_string(mass[i].GetKey()) << setw(20)
 				<< "|" + mass[i].GetValue()->FIO << setw(20) << "|" << endl;
 			cout << ".";  for (size_t i = 0; i < 60; i++) cout << "_"; cout << ".";
 			cout << endl;
