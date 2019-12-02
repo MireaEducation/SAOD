@@ -60,7 +60,7 @@ int main()
 				if (rbTree)
 				{
 					PrintTree(rbTree->GetRoot(), n);
-					cout << "Сумма значений в узлав дерева: " << InOrderTravelRL(rbTree->GetRoot(), 0) << endl;
+					cout << "Сумма значений в узлов дерева: " << InOrderTravelRL(rbTree->GetRoot(), 0) << endl;
 				}
 				else {
 					cout << "Для начало задайте не пустое дерево\n";
@@ -76,7 +76,7 @@ int main()
 					cin >> c;
 					Node* node = FindNode(rbTree->GetRoot(), c);
 					if (node && node->data != ' ') {
-						cout << "Узел найден, его адрес: " << &node << " его значеение: " << node->data << endl;
+						cout << "Узел найден, его адрес: " << &node << " его значение: " << node->data << endl;
 					}
 					else {
 						cout << "Данного узла нет в дереве\n";
