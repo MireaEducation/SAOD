@@ -18,7 +18,7 @@ LinkedList* CreateList(Node* head, int n)
 	if (head == nullptr) {
 		throw new exception("Не удалось выделить память под хранение указателя на элемент списка\n");
 	}
-	cout << "Введите значения для"<<n<<" элемента списка: ";
+	cout << "Введите значения для "<<n<<" элемента списка: ";
 	cin >> head->value;
 
 	head->next = CreateList(head->next, n - 1);
