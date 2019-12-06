@@ -8,7 +8,7 @@ int main()
 
 	short answer = 10;
 	int n = 0;
-	HashTable<int, BankAccount*> *table = nullptr;
+	HashTableOpenAddress *table = nullptr;
 
 	while (answer != 0) {
 		system("cls");
@@ -39,7 +39,7 @@ int main()
 			case 1: {
 				cout << "Укажите размер хэш-таблицы: ";
 				cin >> n;
-				table = new HashTable<int, BankAccount*>(n);
+				table = new HashTableOpenAddress(n);
 				cout << "Таблица успешно создана\n";
 				system("pause");
 				break;

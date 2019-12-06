@@ -17,7 +17,7 @@ void PrintHeaderTable(string h1, string h2, string h3)
 	cout << "."<<endl;
 }
 
-void CreateTable(HashTable<int, BankAccount*> *table, int n)
+void CreateTable(HashTableOpenAddress *table, int n)
 {
 	BankAccount* account = nullptr;
 	for (size_t i = 0; i < n; i++)

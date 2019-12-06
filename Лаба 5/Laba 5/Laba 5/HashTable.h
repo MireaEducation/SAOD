@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 
 /// <summary>
 /// Шаблонный класс для узлов Хэш-Таблицы
@@ -59,7 +61,7 @@ public:
 template<class TKey, class TValue>
 class HashTable
 {
-private:
+protected:
 
 	/// <summary>
 	/// Массив узлов хэш-таблицы
@@ -82,17 +84,14 @@ private:
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <param name="attempt">Номер попытки</param>
 	/// <returns></returns>
-	int GetIndex(TKey key, int attempt)
-	{
-		return (sizeof(key) % 12 + attempt) % size;
-	}
+	virtual int GetIndex(TKey key, int attempt) = 0;
 public:
 
 	/// <summary>
 	/// Инициализирует хэш-таблицу с заданным размером
 	/// </summary>
 	/// <param name="size">Размер хэш-таблицы</param>
-	HashTable(int size)
+	HashTable<TKey, TValue>(int size)
 	{
 		this->size = size;
 		this->count_not_void = size;
@@ -175,33 +174,5 @@ public:
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <returns></returns>
-	int FindNode(TKey key)
-	{
-		int attempt = 0; // кол-во попыток поиска ключа
-		int index; // Индекс искомого элемента
-		bool flag = false; // Флаг указывающий, что ключ подошел
-		HashTableNodePair<TKey, TValue> *node = 0;
-		do
-		{
-			index = this->GetIndex(key, attempt);
-			node = &this->mass[index];
-			attempt++;
-			if (typeid(TValue) == typeid(BankAccount*))
-			{
-				flag = node && !node->GetIsVoid() ? (node->GetValue()->account_number == key ? true : false) : false;
-				if (flag) break;
-			}
-			else {
-				flag = true;
-			}
-		} while (node && attempt != size); // пока не найдется нужный элемент с заданным ключем и значением
-
-		// Если нашелся элемент с заданным ключем и значением в таблице
-		if (node  && flag) {
-			return index;
-		}
-		else {
-			return -1;
-		}
-	}
+	virtual int FindNode(TKey key) = 0;
 };
