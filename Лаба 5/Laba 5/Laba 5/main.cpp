@@ -7,7 +7,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	short answer = 10;
-	int n = 0;
+	int n_old = 0, n_new = 0;
 	HashTableOpenAddress *table = nullptr;
 
 	while (answer != 0) {
@@ -21,6 +21,7 @@ int main()
 		cout << "3) Вывести хэш-таблицу\n";
 		cout << "4) Добавить инф. о новом клиенте хэш-таблицу\n";
 		cout << "5) Удалить инф. о клиенте с указанным номером карты\n";
+		cout << "6) Произвести рэхэширвоание\n";
 		cout << "0) Выход\n";
 		cout << "\nВаш выбор: ";
 		while ((!(cin >> answer)) || cin.get() != '\n') {     //делаем проверку на ввод букв   
@@ -38,8 +39,8 @@ int main()
 			{
 			case 1: {
 				cout << "Укажите размер хэш-таблицы: ";
-				cin >> n;
-				table = new HashTableOpenAddress(n);
+				cin >> n_old;
+				table = new HashTableOpenAddress(n_old);
 				cout << "Таблица успешно создана\n";
 				system("pause");
 				break;
@@ -69,7 +70,7 @@ int main()
 			case 3: {
 				if (table)
 				{
-					Print(table->GetMass(), n);
+					Print(table->GetMass(), n_old);
 				}
 				else {
 					cout << "Хэш-таблица пустая" << endl;
@@ -84,7 +85,7 @@ int main()
 					account = new BankAccount();
 					table->Add(account->account_number, account);
 
-					Print(table->GetMass(), n);
+					Print(table->GetMass(), n_old);
 
 					cout << "Данные успешно добавлены" << endl;
 				}
@@ -95,7 +96,7 @@ int main()
 				break;
 			}
 			case 5: {
-				if (table && table->GetVoidCount() != n)
+				if (table && table->GetVoidCount() != n_old)
 				{
 					cout << "Введите номер карты клиента: ";
 					int num = 0;
@@ -105,6 +106,27 @@ int main()
 					else
 						cout << "Данного клиента нет в хэш-таблице" << endl;
 				} else {
+					cout << "Хэш-таблица пустая" << endl;
+				}
+				system("pause");
+				break;
+			}
+			case 6: {
+				if (table && table->GetVoidCount() != n_old)
+				{
+					cout << "Укажите новый размер хэш-таблицы: ";
+					cin >> n_new;
+					HashTableOpenAddress *tableNew = new HashTableOpenAddress(n_new);
+					tableNew->CopyMass(table->GetMass(), n_old);
+
+					table = tableNew;
+
+					cout << "Рэхэширование проведено успешно\n";
+					n_old = n_new;
+					system("pause");
+					break;
+				}
+				else {
 					cout << "Хэш-таблица пустая" << endl;
 				}
 				system("pause");

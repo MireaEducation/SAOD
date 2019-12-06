@@ -85,6 +85,7 @@ protected:
 	/// <param name="attempt">Номер попытки</param>
 	/// <returns></returns>
 	virtual int GetIndex(TKey key, int attempt) = 0;
+
 public:
 
 	/// <summary>
@@ -97,6 +98,13 @@ public:
 		this->count_not_void = size;
 		mass = new HashTableNodePair<TKey, TValue>[size];
 	}
+
+	/// <summary>
+	/// Копирует данные из старого массива в новый
+	/// </summary>
+	/// <param name="massOld">Старый массив</param>
+	/// <param name="sizeOld">Старый размер</param>
+	virtual void CopyMass(HashTableNodePair<TKey, TValue>* massOld, int sizeOld) = 0;
 
 	HashTableNodePair<TKey, TValue>* GetMass()
 	{
@@ -120,7 +128,7 @@ public:
 	void Add(TKey key, TValue value)
 	{
 		// Если указанного элемента нет в таблице
-		if (this->FindNode(key) == -1)
+		if (FindNode(key) == -1)
 		{
 			int attempt = 0; // кол-во попыток добавить новый элемент
 			int index; // индекс для нового элемента

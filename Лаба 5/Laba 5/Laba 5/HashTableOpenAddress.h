@@ -9,12 +9,39 @@ public:
 	HashTableOpenAddress(int size) :HashTable(size) {}
 
 	/// <summary>
+	/// Копирует данные из старого массива в новый
+	/// </summary>
+	/// <param name="massOld">Старый массив</param>
+	/// <param name="sizeOld">Старый размер</param>
+	void CopyMass(HashTableNodePair<int, BankAccount*>* massOld, int sizeOld) override
+	{
+		if (this->size >= sizeOld)
+		{
+			for (size_t i = 0; i < sizeOld; i++)
+			{
+				if (!massOld[i].GetIsVoid()) {
+					this->Add(massOld[i].GetKey(), massOld[i].GetValue());
+				}
+			}
+		}
+		else {
+			for (size_t count = 0, i = 0; count < this->size; i++)
+			{
+				if (!massOld[i].GetIsVoid()) {
+					this->Add(massOld[i].GetKey(), massOld[i].GetValue());
+					count++;
+				}
+			}
+		}
+	}
+
+	/// <summary>
 	/// Хэщ-функция
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <param name="attempt">Номер попытки</param>
 	/// <returns></returns>
-	int GetIndex(int key, int attempt)
+	int GetIndex(int key, int attempt) override
 	{
 		return (sizeof(key) % 12 + attempt) % size;
 	}
@@ -25,7 +52,7 @@ public:
 	/// </summary>
 	/// <param name="key">Ключ элемента из хэш-таблицы</param>
 	/// <returns></returns>
-	int FindNode(int key)
+	int FindNode(int key)  override
 	{
 		int attempt = 0; // кол-во попыток поиска ключа
 		int index; // Индекс искомого элемента
