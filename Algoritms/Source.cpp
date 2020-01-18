@@ -4,20 +4,20 @@
 using namespace std;
 
 /// <summary>
-/// Находит индекс числа num в отсортированном массиве mass с помощью бинарного поиска
+/// РќР°С…РѕРґРёС‚ РёРЅРґРµРєСЃ С‡РёСЃР»Р° num РІ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРј РјР°СЃСЃРёРІРµ mass СЃ РїРѕРјРѕС‰СЊСЋ Р±РёРЅР°СЂРЅРѕРіРѕ РїРѕРёСЃРєР°
 /// </summary>
-/// <param name="mass">Набор чисел</param>
-/// <param name="num">Искомое числа в наборе чисел mass</param>
-/// <param name="length">Размер массива mass</param>
+/// <param name="mass">РќР°Р±РѕСЂ С‡РёСЃРµР»</param>
+/// <param name="num">РСЃРєРѕРјРѕРµ С‡РёСЃР»Р° РІ РЅР°Р±РѕСЂРµ С‡РёСЃРµР» mass</param>
+/// <param name="length">Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР° mass</param>
 int BinarySearch(int* mass, int num, int length)
 {
 	int left = 0,
 		right = length - 1;
 
-	//пока не вышли за пределы массива
+	//РїРѕРєР° РЅРµ РІС‹С€Р»Рё Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 	do
 	{
-		int mid = (right + left) / 2;//находим средний индекс с заданном интервале [left, right]
+		int mid = (right + left) / 2;//РЅР°С…РѕРґРёРј СЃСЂРµРґРЅРёР№ РёРЅРґРµРєСЃ СЃ Р·Р°РґР°РЅРЅРѕРј РёРЅС‚РµСЂРІР°Р»Рµ [left, right]
 
 		if (mass[mid] == num)
 			return mid;
@@ -27,7 +27,7 @@ int BinarySearch(int* mass, int num, int length)
 			left = mid + 1;
 	} while (left <= right);
 
-	return -1;//указываем, что элемент не найден
+	return -1;//СѓРєР°Р·С‹РІР°РµРј, С‡С‚Рѕ СЌР»РµРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ
 }
 
 int main()
