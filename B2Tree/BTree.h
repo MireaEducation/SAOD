@@ -42,4 +42,21 @@ struct BTree
 	/// Указатель на корень дерева
 	/// </summary>
 	NodeBTree root;
+
+	/// <summary>
+	/// Возвращает индекс родителя узла с индексом i
+	/// </summary>
+	/// <param name="tree">Указатель на корень дерева</param>
+	/// <param name="i">Индекс потомка</param>
+	/// <returns></returns>
+	int FindParent(NodeBTree* tree, int i);
+
+	/// <summary>
+	/// Возвращает индекс правого брата
+	/// Или -1, если правого брата нет
+	/// </summary>
+	/// <param name="tree">Указатель на корень дерева</param>
+	/// <param name="i">Индекс потомка</param>
+	/// <returns></returns>
+	int rightBrather(BTree* tree, int i);
 };
