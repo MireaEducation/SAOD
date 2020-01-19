@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalcPolalndNotation", "..\CalcPolalndNotation\CalcPolalndNotation.vcxproj", "{94B47142-3C72-4F6F-88D4-324DB911F971}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConvertToPolandNotation", "..\ConvertToPolandNotation\ConvertToPolandNotation.vcxproj", "{5C32ED85-0A59-4E24-AE17-AB9292E36F29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -87,6 +89,14 @@ Global
 		{94B47142-3C72-4F6F-88D4-324DB911F971}.Release|x64.Build.0 = Release|x64
 		{94B47142-3C72-4F6F-88D4-324DB911F971}.Release|x86.ActiveCfg = Release|Win32
 		{94B47142-3C72-4F6F-88D4-324DB911F971}.Release|x86.Build.0 = Release|Win32
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Debug|x64.ActiveCfg = Debug|x64
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Debug|x64.Build.0 = Debug|x64
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Debug|x86.ActiveCfg = Debug|Win32
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Debug|x86.Build.0 = Debug|Win32
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Release|x64.ActiveCfg = Release|x64
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Release|x64.Build.0 = Release|x64
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Release|x86.ActiveCfg = Release|Win32
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +109,7 @@ Global
 		{D7D13C51-E22F-4E22-98CD-FC745F451B72} = {CD81DFA3-5448-4994-8107-EC71C3A1E23B}
 		{7D105676-5151-4CF6-BDC4-86A509C33B98} = {01583A46-1347-415A-9EA2-31D5836675B8}
 		{94B47142-3C72-4F6F-88D4-324DB911F971} = {FA9114E9-6312-4BFA-8E46-0150D4C867EE}
+		{5C32ED85-0A59-4E24-AE17-AB9292E36F29} = {FA9114E9-6312-4BFA-8E46-0150D4C867EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {884B35A3-2053-4562-A4EA-DB70B82416C4}
