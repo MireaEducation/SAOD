@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{2BCCF1F9-8C60-4C52-ABE0-26EE86D5A468}</ProjectGuid>
-    <RootNamespace>B2Tree</RootNamespace>
+    <ProjectGuid>{6C9DAC73-51DB-44CA-A4EC-04B1B114EA5E}</ProjectGuid>
+    <RootNamespace>TraversWidth</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -122,10 +122,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="B2Tree.h" />
-    <ClInclude Include="BTree.h" />
-  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
